@@ -16,6 +16,13 @@
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+        .login-msg {
+            text-align: center;
+            color: red;
+        }
+    </style>
 </head>
 <body class="login-bg">
 
@@ -23,32 +30,60 @@
     <div class="message">人力资源-管理登录</div>
     <div id="darkbannerwrap"></div>
 
-    <form method="post" class="layui-form" >
-        <input name="username" autocomplete="off" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
+    <form class="layui-form" id="frm" >
+        <input name="uName" autocomplete="off" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
         <hr class="hr15">
-        <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
+        <input name="uPassword" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
         <hr class="hr15">
-        <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+        <input value="登录" id="login-btn" lay-submit lay-filter="login" style="width:100%;" type="button">
+
+        <span class="login-msg" id="msg"></span>
         <hr class="hr20" >
     </form>
 </div>
 
 <script>
     $(function  () {
-        layui.use('form', function(){
-            var form = layui.form;
-            // layer.msg('玩命卖萌中', function(){
-            //   //关闭后的操作
-            //   });
-            //监听提交
-            form.on('submit(login)', function(data){
-                // alert(888)
-                layer.msg(JSON.stringify(data.field),function(){
-                    location.href='page/index.html'
-                });
-                return false;
+
+        $("#login-btn").on('click', function () {
+
+            layui.use('form', function() {
+
+                let frm_data = $("#frm").serialize();
+
+                console.log(frm_data)
+
+                $.ajax({
+                    url: "http://127.0.0.1:8080/ssm/users/login",
+                    data: frm_data,
+                    type: "post",
+                    success: res => {
+                        console.log(res);
+
+                        switch (res.code) {
+
+                            case 404:
+                                $("#msg").html(res.message);
+                                break;
+                            case 403:
+                                $("#msg").html(res.message);
+                                break
+                            case 200:
+                                location.href = "page/index.html"
+                                break;
+                        }
+
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
+
             });
+
         });
+
+
     })
 </script>
 <!-- 底部结束 -->
