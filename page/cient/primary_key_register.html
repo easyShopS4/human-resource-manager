@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Mr. Jiang" />
+		<title>人力资源档案管理设置</title>
+
+		<!-- 导航元素依赖 开始 -->
+		<link rel="stylesheet" href="../../css/font.css">
+		<link rel="stylesheet" href="../../css/xadmin.css">
+		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../js/xadmin.js"></script>
+		<!-- 导航元素依赖 结束 -->
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet"
+			href="../../css/table.css" type="text/css">
+		<script type="text/javascript">
+	function selAll(obj) {
+	var cho = document.all.choice.value;
+	if (cho == "全选")
+		document.all.choice.value = "取消";
+	else
+		document.all.choice.value = "全选";
+
+	for(var i=0;i<obj.elements.length;i++){
+ 			if(obj.elements[i].tagName.toLowerCase()=="input" &&　obj.elements[i].type=="checkbox"){
+ 				if(cho == "全选")
+ 					obj.elements[i].checked=true;
+ 				else
+ 					obj.elements[i].checked=false;
+ 			}
+ 		}
+ 	}
+ 	function doRegister()
+ 	{
+		document.forms[0].submit();
+ 	}
+</script>
+		<script type="text/javascript"
+			src="../../javascript/jquery-1.7.2.js">
+		</script>
+		<script type="text/javascript"
+			src="../../javascript/selectAll.js">
+		</script>
+	</head>
+
+	<body>
+		<!-- 头部导航 开始
+			您正在做的业务是：人力资源--客户化设置--其他设置--关键字查询设置
+		-->
+		<div class="x-nav">
+			<span class="layui-breadcrumb">
+		    <a href="">人力资源管理</a>
+		    <a href="">客户化设置管理</a>
+		       <a href="">其他设置</a>
+		    <a>
+		      <cite>关键字查询设置</cite></a>
+		  </span>
+		  </div>
+		<form action="primary_key.html" method="post">
+			<table class="layui-table" lay-skin="line">
+				<tr class="TR_STYLE1">
+					<td class="TD_STYLE1" colspan="4">
+						请选择用于关键字查询的字段&nbsp;
+						<input type="button" id="choice" value="全选"
+							class="layui-btn"/>
+					</td>
+				</tr>
+				<input type="hidden" name="cpmk.tableName" value="试卷登记表" />
+				
+					<td class="TD_STYLE2">
+						<input type="checkbox" name="cpmk.primaryKey" value="388"
+						
+							checked="checked"
+						
+							>
+						编号
+					</td>
+					
+				
+					<td class="TD_STYLE2">
+						<input type="checkbox" name="cpmk.primaryKey" value="389"
+						
+							checked="checked"
+						
+							>
+						试卷编号
+					</td>
+					
+				
+					<td class="TD_STYLE2">
+						<input type="checkbox" name="cpmk.primaryKey" value="390"
+						
+							checked="checked"
+						
+							>
+						职位分类编号
+					</td>
+					
+				
+					<td class="TD_STYLE2">
+						<input type="checkbox" name="cpmk.primaryKey" value="391"
+						
+							checked="checked"
+						
+							>
+						职位分类名称
+					</td>
+					
+					<tr></tr>
+					
+				
+					<td class="TD_STYLE2">
+						<input type="checkbox" name="cpmk.primaryKey" value="392"
+						
+							checked="checked"
+						
+							>
+						职位编号
+					</td>
+					
+				
+					<td class="TD_STYLE2">
+						<input type="checkbox" name="cpmk.primaryKey" value="393"
+						
+							checked="checked"
+						
+							>
+						职位名称
+					</td>
+					
+				
+					<td class="TD_STYLE2">
+						<input type="checkbox" name="cpmk.primaryKey" value="394"
+						
+							checked="checked"
+						
+							>
+						登记人
+					</td>
+					
+				
+					<td class="TD_STYLE2">
+						<input type="checkbox" name="cpmk.primaryKey" value="395"
+						
+							checked="checked"
+						
+							>
+						登记时间
+					</td>
+					
+					<tr></tr>
+					
+				
+					<td class="TD_STYLE2">
+						<input type="checkbox" name="cpmk.primaryKey" value="396"
+						
+							checked="checked"
+						
+							>
+						答题限时
+					</td>
+					
+				<tr >
+					<td colspan="2" align="center">
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<input type="submit" value="提交" class="layui-btn">
+							<a href="third_kind.html"><input type="button" value="返回" class="layui-btn"></a>
+						</div>
+					</div>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
+

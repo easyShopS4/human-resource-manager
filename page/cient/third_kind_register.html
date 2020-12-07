@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Mr. Jiang" />
+		<title>人力资源档案管理设置</title>
+
+		<!-- 导航元素依赖 开始 -->
+		<link rel="stylesheet" href="../../css/font.css">
+		<link rel="stylesheet" href="../../css/xadmin.css">
+		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../js/xadmin.js"></script>
+		<!-- 导航元素依赖 结束 -->
+		<script type="text/javascript" src="../../javascript/jquery-1.7.2.js"></script>
+		
+		<script type="text/javascript">
+			$(function() {
+				$("#firstKind").change(function() {
+					$.post("/jquery5/test/TestAction!doSecondChange", {"firstId" : $("#firstKind").val()}, function(data) {
+						var items = $(data).find("item");
+						var secondKind = $("#secondKind");
+						secondKind.html("<option value=''>请选择</option>");
+						items.each(function(i) {
+							var option = $("<option></option>");
+							option.val($(items[i]).attr("id")).html($(items[i]).attr("value")).appendTo(secondKind);
+						});
+					}, "text");
+				});
+			});
+			
+		function change1(){
+			
+			
+			
+		var se=document.getElementById("firstKindId");
+		document.getElementById("firstKindName").value=se.options[se.selectedIndex].innerHTML;
+		
+		}	
+		function change2(){
+		var se=document.getElementById("secondKindId");
+		document.getElementById("secondKindName").value=se.options[se.selectedIndex].innerHTML;
+		
+		}	
+		</script>
+	</head>
+	<script type="text/javascript"> 
+			$(function() {
+			var first=$("#firstKindId");
+			var second= $("#secondKindId");
+	 		 first.change(function(){
+	 		 	$.post('/HR_Fist/transfer/transferAction!findtwo.action',{ 'configThird.firstKindId' : $('#firstKindId option:selected').val() },
+		  			function(data){
+		  			 
+		  			 second.css("width",first.width());
+		  			second.empty();
+		  			second.append("<option value='0' >-----请选择-----</option>");
+		  		var items = $(data).find("item");
+		  		items.each(function(i){
+		  				var id = $(items[i]).attr("id");
+		  				var name = $(items[i]).attr("name");	
+		  				second.append("<option value='"+id+"'>"+name+"</option>");
+		  		
+		  		
+		  		});
+					},'xml');
+	 		 	third.val('0');
+	 		 }); });
+</script>
+
+	<body>
+		<!-- 头部导航 开始
+			您正在做的业务是：您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--III级机构设置--III级机构添加
+		-->
+		<div class="x-nav">
+			<span class="layui-breadcrumb">
+		    <a href="">人力资源管理</a>
+		    <a href="">客户化设置管理</a>
+		    <a href="">人力资源档案管理设置</a>
+		    <a href="">III级机构设置</a>
+		    <a>
+		      <cite>III级机构添加</cite></a>
+		  </div>
+		<!-- 头部导航 结束 -->
+		<form action="third_kind_register_success.html" method="post">
+			<table class="layui-table" lay-skin="line">
+				<tr>
+					<td width="19%" class="TD_STYLE1">
+						I级机构名称
+					</td>
+					<td width="81%" class="TD_STYLE2">
+						<select name="cftk.firstKindId" onchange="change1()" id="firstKindId" class="INPUT_STYLE1">
+							<option value="0">
+								请选择I机构名称
+							</option>
+							
+							<option value="1353318953319">Ⅰ级结构</option>
+							
+							<option value="1353318929919">集团</option>
+							
+							<option value="1353318937391">总部</option>
+							
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td width="19%" class="TD_STYLE1">
+						II级机构名称
+					</td>
+					<td width="81%" class="TD_STYLE2">
+						<select name="cftk.secondKindId" onchange="change2()" id="secondKindId" class="INPUT_STYLE1">
+							<option value="0">
+								请选择II机构名称
+							</option>
+							 
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td width="19%" class="TD_STYLE1">
+						III级机构编号
+					</td>
+					<td width="81%" class="TD_STYLE2">
+					</td>
+				</tr>
+				<tr>
+					<td class="TD_STYLE1">
+						III级机构名称
+					</td>
+					<td class="TD_STYLE2">
+						<input type="text" class="INPUT_STYLE1" name="cftk.thirdKindName" />
+					</td>
+				</tr>
+				<tr>
+					<td class="TD_STYLE1">
+						销售责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
+					</td>
+					<td class="TD_STYLE2">
+						<textarea rows="4" cols="120" class="TEXTAREA_STYLE1" name="cftk.thirdKindSaleId"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td class="TD_STYLE1">
+						是否为零售店（是/否）
+					</td>
+					<td class="TD_STYLE2">
+					<select name="cftk.thirdKindIsRetail">
+						<option selected="selected">是</option>
+						<option>否</option>
+					</select>
+						 
+					</td>
+				</tr>
+				<tr >
+					<td colspan="2" align="center">
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<input type="submit" value="提交" class="layui-btn">
+							<a href="third_kind.html"><input type="button" value="返回" class="layui-btn"></a>
+						</div>
+					</div>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

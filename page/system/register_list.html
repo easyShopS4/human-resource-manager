@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+	<meta name="renderer" content="webkit">
+	<!--国产浏览器高速模式-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Mr. Jiang" />
+	<title>职位发布变更</title>
+
+	<!-- 导航元素依赖 开始 -->
+	<link rel="stylesheet" href="../../css/font.css">
+	<link rel="stylesheet" href="../../css/xadmin.css">
+	<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../../js/xadmin.js"></script>
+	<!-- 导航元素依赖 结束 -->
+</head>
+	<body onload="">
+	<div class="x-nav">
+		 <span class="layui-breadcrumb">
+		    <a href="">人力资源</a>
+		    <a href="">调动管理</a>
+		    <a>
+		      <cite>调动登记列表 </cite></a>
+		  </span>
+		<a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+			<i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+	</div>
+			<br/><br/><br/>
+			<table class="layui-table" lay-skin="line">
+				<colgroup>
+					<col width="150">
+					<col width="200">
+					<col>
+				</colgroup>
+				<thead>
+				<tr>
+					<th>I级机构 </th>
+					<th>II级机构 </th>
+					<th>Ⅲ级机构 </th>
+					<th>薪酬标准 </th>
+					<th>名字 </th>
+					<th>调动</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>Ⅰ级结构 </td>
+					<td>Ⅱ级结构3 </td>
+					<td>Ⅲ级机构</td>
+					<td>经理级别 </td>
+					<td> 	杨阳 </td>
+					<td>
+						<button type="button" class="layui-btn layui-btn-sm layui-btn-container">
+							<a href="register.html">调动</a>
+						</button>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Ⅰ级结构 </td>
+					<td>Ⅱ级结构3 </td>
+					<td>Ⅲ级机构</td>
+					<td>经理级别 </td>
+					<td> 	杨阳 </td>
+					<td>
+						<button type="button" class="layui-btn layui-btn-sm layui-btn-container">
+							<a href="register.html">调动</a>
+						</button>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Ⅰ级结构 </td>
+					<td>Ⅱ级结构3 </td>
+					<td>Ⅲ级机构</td>
+					<td>经理级别 </td>
+					<td> 	杨阳 </td>
+					<td>
+						<button type="button" class="layui-btn layui-btn-sm layui-btn-container">
+							<a href="register.html">调动</a>
+						</button>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Ⅰ级结构 </td>
+					<td>Ⅱ级结构3 </td>
+					<td>Ⅲ级机构</td>
+					<td>经理级别 </td>
+					<td> 	杨阳 </td>
+					<td>
+						<button type="button" class="layui-btn layui-btn-sm layui-btn-container">
+							<a href="register.html">调动</a>
+						</button>
+					</td>
+				</tr>
+				</tbody>
+
+				<tfoot>
+				<tr align="center">
+					<td colspan="6">
+						<div id="page"></div>
+
+						<script src="/static/build/layui.js"></script>
+						<script>
+							layui.use('laypage', function(){
+								var laypage = layui.laypage;
+
+								//执行一个laypage实例
+								laypage.render({
+									elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
+									,count: 50 //数据总数，从服务端得到
+								});
+							});
+						</script>
+					</td>
+				</tr>
+				</tfoot>
+			</table>
+<html>
+  <head>  
+  </head>  
+  <body>
+   <p>
+   <div align="center" style="font-size: 18px;color: gray">
+				&nbsp;&nbsp;总数：
+				<font style="color: maroon;font-weight: bold;">14</font>
+				例 
+				&nbsp;&nbsp;&nbsp;
+				每页显示 <font style="color: maroon;font-weight: bold;">10</font> 
+				条
+				&nbsp;&nbsp;&nbsp; 
+				当前第 <font style="color: maroon;font-weight: bold;">1</font>
+				 页 
+				&nbsp;&nbsp;&nbsp;共 
+				<font style="color: maroon;font-weight: bold;">2</font>
+				 页
+				<a style="color: navy;font-weight: bold" href="javascript:doPage(1)">首页</a>
+				
+				<a style="color: navy;font-weight: bold"
+				 href="javascript:doPage(0)">上一页</a>
+				 
+				<a style="color: navy;font-weight: bold" 
+				href="javascript:doPage(2)">下一页</a>
+				
+				<a style="color: navy;font-weight: bold"
+				 href="javascript:doPage(2)">末页</a>
+				&nbsp;&nbsp;&nbsp;跳到第
+				<input id=page type=text  value="1" class=input1 size=1>
+				页&nbsp;&nbsp;
+				<input type="image" onclick="dopagebybutton()" src="../../images/go.bmp" width=18 height=18 border=0>
+				<input type="hidden" name="page.startPage" id="startpage" value="1">
+			</div>
+			<script type="text/javascript">
+function dopagebybutton() {
+	var reg = /^[0-9]*[1-9][0-9]*$/;
+	if (reg.test(document.getElementById("page").value)) {
+		document.getElementById("startpage").value= document.getElementById("page").value;
+	} else {
+		alert("您的输入有误");
+		document.getElementById("page").value = document.getElementById("startpage").value;
+	}
+	document.forms[0].submit();
+	
+}
+function doPage(startsize) {
+	document.getElementById("startpage").value =startsize;
+	document.forms[0].submit();
+	 
+}
+</script>
+   
+   
+  </body>
+</html>
+
+			
+		</form>
+	</body>
+</html>

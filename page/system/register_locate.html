@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+	<meta name="renderer" content="webkit">
+	<!--国产浏览器高速模式-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Mr. Jiang" />
+	<title>职位发布登记</title>
+
+	<!-- 导航元素依赖 开始 -->
+
+	<link rel="stylesheet" href="../../css/font.css">
+	<link rel="stylesheet" href="../../css/xadmin.css">
+	<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../../js/xadmin.js"></script>
+
+	<!-- 导航元素依赖 结束 -->
+</head>
+<body>
+<!-- 头部导航 开始 -->
+<div class="x-nav">
+		  <span class="layui-breadcrumb">
+		    <a href="">人力资源</a>
+		    <a href="">调动管理11</a>
+		    <a>
+		      <cite>调动登记查询 </cite></a>
+		  </span>
+	<a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+		<i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+</div>
+<!-- 头部导航 结束 -->
+
+
+<!-- 表单元素开始 -->
+<form class="layui-form" action="register_list.html">
+	<table class="layui-table" lay-skin="row">
+		<tbody>
+		<tr>
+			<td>
+				<div class="layui-form-item">
+					<label class="layui-form-label">I级机构</label>
+					<div class="layui-input-block">
+						<select name="city" lay-verify="required">
+							<option value=""></option>
+							<option value="0">北京</option>
+							<option value="1">上海</option>
+							<option value="2">广州</option>
+							<option value="3">深圳</option>
+							<option value="4">杭州</option>
+						</select>
+					</div>
+				</div>
+			</td>
+
+			<td>
+				<div class="layui-form-item">
+					<label class="layui-form-label">Ⅱ级机构</label>
+					<div class="layui-input-block">
+						<select name="city" lay-verify="required">
+							<option value=""></option>
+							<option value="0">北京</option>
+							<option value="1">上海</option>
+							<option value="2">广州</option>
+							<option value="3">深圳</option>
+							<option value="4">杭州</option>
+						</select>
+					</div>
+				</div>
+			</td>
+
+			<td>
+				<div class="layui-form-item">
+					<label class="layui-form-label">Ⅲ级机构</label>
+					<div class="layui-input-block">
+						<select name="city" lay-verify="required">
+							<option value=""></option>
+							<option value="0">北京</option>
+							<option value="1">上海</option>
+							<option value="2">广州</option>
+							<option value="3">深圳</option>
+							<option value="4">杭州</option>
+						</select>
+					</div>
+				</div>
+			</td>
+
+			<td>
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">登记时间</label>
+						<div class="layui-input-inline" style="width: 100px;">
+							<input type="text" placeholder="开始" class="layui-input" id="test1">
+						</div>
+						<div class="layui-form-mid">-</div>
+						<div class="layui-input-inline" style="width: 100px;">
+							<input type="text" placeholder="结束" class="layui-input" id="test2">
+						</div>
+						<div class="layui-form-mid">(yyyy-mm-dd)</div>
+					</div>
+				</div>
+			</td>
+
+		<tr align="center">
+			<td colspan="4">
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button type="submit" class="layui-btn">查询</button>
+						<button type="reset" class="layui-btn layui-btn-primary">清除</button>
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		</tbody>
+	</table>
+</form>
+
+
+<!-- 表单元素结束 -->
+
+<script>
+	/*
+        下拉框依赖
+     */
+	layui.use('form', function(){
+		var form = layui.form;
+
+		//监听提交
+		form.on('submit(formDemo)', function(data){
+			layer.msg(JSON.stringify(data.field));
+			return false;
+		});
+	});
+
+	layui.use('laydate', function(){
+		var laydate = layui.laydate;
+
+		//执行一个laydate实例
+		laydate.render({
+			elem: '#test1',type:'datetime'//指定元素
+		});
+		//执行一个laydate实例
+		laydate.render({
+			elem: '#test2',type:'datetime' //指定元素
+		});
+	});
+</script>
+</body>
+</html>

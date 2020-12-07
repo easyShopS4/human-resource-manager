@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Mr. Jiang" />
+		<title>人力资源档案管理设置</title>
+
+		<!-- 导航元素依赖 开始 -->
+		<link rel="stylesheet" href="../../css/font.css">
+		<link rel="stylesheet" href="../../css/xadmin.css">
+		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../js/xadmin.js"></script>
+		<!-- 导航元素依赖 结束 -->
+	</head>
+	
+<script type="text/javascript">
+		function check(){
+			if (document.getElementById("firstKind.ffkId").value==0){
+				alert("请选择I级机构名称!!!");
+				return false;
+			}
+			if (document.getElementById("secondKind.secondKindName").value==""){
+				alert("II级机构名称不能为空!!!");
+				return false;
+			}
+			if (document.getElementById("secondKind.secondSalaryId").value==""){
+				alert("薪酬发放责任人编号不能为空!!!");
+				return false;
+			}
+			if (document.getElementById("secondKind.secondSaleId").value==""){
+				alert("销售责任人编号不能为空!!!");
+				return false;
+			}
+			document.forms[0].submit();
+		}	
+		function change(){
+		var se=document.getElementById("firstKindId");
+		document.getElementById("firstKindName").value=se.options[se.selectedIndex].innerHTML;
+		
+		}	
+</script>
+	<body>
+		<!-- 头部导航 开始
+			您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--II级机构设置--II级机构添加
+		-->
+		<div class="x-nav">
+			<span class="layui-breadcrumb">
+		    <a href="">人力资源管理</a>
+		    <a href="">客户化设置管理</a>
+		    <a href="">人力资源档案管理设置</a>
+		    <a href="">II级机构设置</a>
+		    <a>
+		      <cite>II级机构添加</cite></a>
+		  </div>
+		<!-- 头部导航 结束 -->
+		
+		
+		<!--
+        	作者：蒋友鹏
+        	时间：2020-11-30
+        	描述：表格开始
+        -->
+		<form action="second_kind_register_success.html" method="post">
+					<input type="hidden" id="firstKindName" name="cfsk.firstKindName">
+			<table class="layui-table" lay-skin="line">
+				<tr>
+					<td width="19%" class="TD_STYLE1">
+						I级机构名称
+					</td>
+					<td width="81%" class="TD_STYLE2">
+					<select name="cfsk.firstKindId" id="firstKindId" onchange="change()">
+						<option>请选择I级机构名称...</option>
+						
+						<option value="1353318953319">Ⅰ级结构</option>
+						
+						<option value="1353318929919">集团</option>
+						
+						<option value="1353318937391">总部</option>
+						
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td width="19%" class="TD_STYLE1">
+						II级机构编号
+					</td>
+					<td width="81%" class="TD_STYLE2">
+					</td>
+				</tr>
+				<tr>
+					<td class="TD_STYLE1">
+						II级机构名称
+					</td>
+					<td class="TD_STYLE2">
+						<input type="text" class="INPUT_STYLE1" name="cfsk.secondKindName" value=""/>
+					</td>
+				</tr>
+				<tr>
+					<td class="TD_STYLE1">
+						薪酬发放责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
+					</td>
+					<td class="TD_STYLE2">
+						<textarea rows="4" cols="" class="TEXTAREA_STYLE1" name="cfsk.secondSalaryId"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td class="TD_STYLE1">
+						销售责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
+					</td>
+					<td class="TD_STYLE2">
+						<textarea rows="4" cols="" class="TEXTAREA_STYLE1" name="cfsk.secondSaleId" ></textarea>
+					</td>
+				</tr>
+				<tr >
+					<td colspan="2" align="center">
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<input type="submit" value="提交" class="layui-btn">
+							<a href="second_kind.html"><input type="button" value="返回" class="layui-btn"></a>
+						</div>
+					</div>
+					</td>
+				</tr>
+			</table>
+		</form>
+		 <!--
+        	描述：表格结尾
+        -->
+	</body>
+</html>
+

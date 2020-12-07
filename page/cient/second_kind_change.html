@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Mr. Jiang" />
+		<title>人力资源档案管理设置</title>
+
+		<!-- 导航元素依赖 开始 -->
+		<link rel="stylesheet" href="../../css/font.css">
+		<link rel="stylesheet" href="../../css/xadmin.css">
+		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../js/xadmin.js"></script>
+		<!-- 导航元素依赖 结束 -->
+	</head>
+	
+<script type="text/javascript">
+	//控件判断不能为空
+	function check(){
+		if (document.getElementById("secondKind.secondSalaryId").value==""){
+			alert("薪酬发放责任人编号不能为空!!!");
+			return false;
+		}
+		if(document.getElementById("secondKind.secondSaleId").value==""){
+			alert("销售责任人编号不能为空!!!");
+			return false;
+		}
+		document.forms[0].submit();
+	}		
+</script>
+
+	<body>
+	<!-- 头部导航 开始
+			您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--II级机构设置--II级机构变更
+		-->
+		<div class="x-nav">
+			<span class="layui-breadcrumb">
+		    <a href="">人力资源管理</a>
+		    <a href="">客户化设置管理</a>
+		     <a href="">人力资源档案管理设置</a>
+		    <a href="">II级机构设置</a>
+		    <a>
+		      <cite>II级机构变更</cite></a>
+		</div>
+
+		<!-- 头部导航 结束 -->
+		<!--
+        	描述：表格开始
+        -->
+		<form action="second_kind_change_success.html" method="post">
+			
+			<table class="layui-table" lay-skin="line">
+				<input type="hidden" name="cfsk.fskId" value=761 class="INPUT_STYLE1" />
+				<tr>
+					<td width="19%" class="TD_STYLE1">
+						I级机构名称
+					</td>
+					<td width="81%" class="TD_STYLE2">
+						<input type="text" name="cfsk.firstKindName" readonly="readonly" class="INPUT_STYLE1" value="集团">
+					</td>
+				</tr>
+				<tr>
+					<td width="19%" class="TD_STYLE1">
+						II级机构编号
+					</td>
+					<td width="81%" class="TD_STYLE2">
+						<input type="text" name="cfsk.secondKindId" readonly="readonly" class="INPUT_STYLE1" value="1353814997520">
+					</td>
+				</tr>
+				<tr>
+					<td class="TD_STYLE1">
+						II级机构名称
+					</td>
+					<td class="TD_STYLE2">
+						<input type="text" name="cfsk.secondKindName" readonly="readonly" class="INPUT_STYLE1" value="二集团">
+					</td>
+				</tr>
+				<tr>
+					<td class="TD_STYLE1">
+						薪酬发放责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
+					</td>
+					<td class="TD_STYLE2">
+					<textarea rows="4" cols="120" name="cfsk.secondSalaryId" class="TEXTAREA_STYLE1">1</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td class="TD_STYLE1">
+						销售责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
+					</td>
+					<td class="TD_STYLE2">
+					<textarea rows="4" cols="120" name="cfsk.secondSaleId" class="TEXTAREA_STYLE1">2</textarea>
+					</td>
+				</tr>
+				<tr >
+					<td colspan="2" align="center">
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<input type="submit" value="提交" class="layui-btn">
+							<a href="second_kind.html"><input type="button" value="返回" class="layui-btn"></a>
+						</div>
+					</div>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<!--
+        	描述：表格结束
+        -->
+	</body>
+</html>

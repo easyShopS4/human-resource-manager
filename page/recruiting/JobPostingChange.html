@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Mr. Jiang" />
+		<title>职位发布变更</title>
+		
+		<!-- 导航元素依赖 开始 -->	
+		<link rel="stylesheet" href="../../css/font.css">
+		<link rel="stylesheet" href="../../css/xadmin.css">
+		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../js/xadmin.js"></script>
+		<!-- 导航元素依赖 结束 -->
+	</head>
+	<body>
+		<!-- 头部导航 开始 -->
+		<div class="x-nav">
+		  <span class="layui-breadcrumb">
+		    <a href="">招聘管理</a>
+		    <a href="">职位发布管理</a>
+		    <a>
+		      <cite>职位发布变更</cite></a>
+		  </span>
+		  <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+		    <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+		</div>
+		<div style="margin-top: 20px; margin-bottom: 20px;">
+			<span class="layui-breadcrumb">
+			  <a href="">当前可变更是职位发布总数：</a>
+			  <a href="">2</a>
+			  <a>
+			    <cite>个</cite></a>
+			</span>
+		</div>
+		<!-- 头部导航 结束 -->
+		
+		<table class="layui-table" lay-skin="line">
+		    <colgroup>
+		      <col width="150">
+		      <col width="200">
+		      <col>
+		    </colgroup>
+		    <thead>
+		      <tr>
+		        <th>职位名称</th>
+		        <th>公司名称</th>
+		        <th>招聘人数</th>
+				<th>发布时间</th>
+				<th>截止时间</th>
+				<th>操作</th>
+		      </tr> 
+		    </thead>
+		    <tbody>
+				<tr>
+					<td>区域经理</td>
+					<td>软件公司</td>
+					<td>3</td>
+					<td>2012-08-01 12:00:00</td>
+					<td>2012-12-30 12:00:00</td>
+					<td>
+						<button type="button" onclick="xadmin.open('职位更改','JobPostingChange-Update.html',1000,650)" class="layui-btn layui-btn-sm layui-btn-normal">修改</button>
+						<button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>总经理</td>
+					<td>生物科技有限公司</td>
+					<td>2</td>
+					<td>2012-08-02 12:00:00</td>
+					<td>2012-11-15 12:00:00</td>
+					<td>
+						<button type="button" onclick="xadmin.open('职位更改','JobPostingChange-Update.html',1000,650)" class="layui-btn layui-btn-sm layui-btn-normal">修改</button>
+						<button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+					</td>
+				</tr>	
+		    </tbody>
+			
+			<tfoot>
+				<tr align="center">
+					<td colspan="6">
+						<div id="page"></div>
+						 
+						<script src="/static/build/layui.js"></script>
+						<script>
+						layui.use('laypage', function(){
+						  var laypage = layui.laypage;
+						  
+						  //执行一个laypage实例
+						  laypage.render({
+						    elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
+						    ,count: 50 //数据总数，从服务端得到
+						  });
+						});
+						</script>
+					</td>
+				</tr>
+			</tfoot>
+		</table>		
+	</body>
+</html>

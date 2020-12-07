@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+	<meta name="renderer" content="webkit">
+	<!--国产浏览器高速模式-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Mr. Jiang" />
+	<title>录用查询</title>
+
+	<!-- 导航元素依赖 开始 -->
+	<link rel="stylesheet" href="../../css/font.css">
+	<link rel="stylesheet" href="../../css/xadmin.css">
+	<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../../js/xadmin.js"></script>
+	<!-- 导航元素依赖 结束 -->
+</head>
+<body>
+<!-- 头部导航 开始 -->
+<div class="x-nav">
+		  <span class="layui-breadcrumb">
+		    <a href="">人力资源</a>
+		    <a href="">权限管理</a>
+		    <a>
+		      <cite>添加角色</cite></a>
+		  </span>
+	<a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+		<i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+</div>
+<!-- 头部导航 结束 -->
+<!-- 表单元素开始 -->
+
+<form class="layui-form" action="">
+	<table class="layui-table" lay-skin="row">
+		<tbody>
+		<tr>
+			<td >
+				<div class="layui-form-item">
+					<label class="layui-form-label">角色名称</label>
+					<div class="layui-input-block">
+						<input type="text" name="title"  lay-verify="required" value="bt23232098345" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</td>
+
+			<td>
+				<div class="layui-form-item">
+					<label class="layui-form-label">角色说明</label>
+					<div class="layui-input-block">
+						<input type="text" name="title"  lay-verify="required" value="bt23232098345" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+
+			<td>
+				<div class="layui-form-item">
+					<label class="layui-form-label">是否可用</label>
+					<div class="layui-input-block">
+						<select name="city" lay-verify="required">
+							<option value="0">是</option>
+							<option value="1">否</option>
+						</select>
+					</div>
+				</div>
+			</td>
+
+		</tr>
+		<tr>
+			<td colspan="2" align="right">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary" onclick="history.back()">返回</button>
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</form>
+
+
+
+
+<!-- 表单元素结束 -->
+
+<script>
+	/*
+        下拉框依赖
+     */
+	layui.use('form', function(){
+		var form = layui.form;
+
+		//监听提交
+		form.on('submit(formDemo)', function(data){
+			layer.msg(JSON.stringify(data.field));
+			return false;
+		});
+	});
+
+	layui.use('laydate', function(){
+		var laydate = layui.laydate;
+
+		//执行一个laydate实例
+		laydate.render({
+			elem: '#test1'//指定元素
+		});
+	});
+</script>
+
+</body>
+</html>

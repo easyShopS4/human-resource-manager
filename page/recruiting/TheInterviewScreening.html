@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Mr.Jiang" />
+		<title>面试结果列表</title>
+		
+		<!-- 导航元素依赖 开始 -->	
+		<link rel="stylesheet" href="../../css/font.css">
+		<link rel="stylesheet" href="../../css/xadmin.css">
+		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../js/xadmin.js"></script>
+		<!-- 导航元素依赖 结束 -->
+	</head>
+	<body>
+		<!-- 头部导航 开始 -->
+		<div class="x-nav">
+		  <span class="layui-breadcrumb">
+		    <a href="">你正在做的业务是</a>
+		    <a href="">人力资源</a>
+			<a href="">招聘管理</a>
+			<a href="">面试管理</a>
+		    <a>
+		      <cite>面试筛选--面试结果列表</cite></a>
+		  </span>
+		  <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+		    <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+		</div>
+		<!-- 头部导航 结束 -->
+		<!-- 表格元素开始 -->
+		<table class="layui-table" lay-skin="line" style="margin-top: 50px;">
+		    <colgroup>
+		      <col width="150">
+		      <col width="200">
+		      <col>
+		    </colgroup>
+		    <thead>
+		      <tr>
+		        <th>档案编号</th>
+		        <th>姓名</th>
+				<th>职位分类</th>
+				<th>职位名称</th>
+				<th>面试次数</th>	
+				<th>面试时间</th>
+				<th>综合素质</th>
+				<th>操作</th>
+		      </tr> 
+		    </thead>
+		    <tbody>
+				<tr>
+					<td>543</td>
+					<td>张飒</td>
+					<td>软件开发</td>
+					<td>程序员</td>
+					<td>1</td>
+					<td>2012-11-25 00:00:00.0</td>
+					<td><span class="layui-badge">A</span></td>
+					<td>
+						<button type="button" onclick="xadmin.open('面试筛选编辑','TheInterviewScreening-Update.html',1580,750)" class="layui-btn layui-btn-sm layui-btn-warm">筛选</button>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>544</td>
+					<td>三</td>
+					<td>软件公司</td>
+					<td>项目经理</td>
+					<td>2</td>
+					<td>2012-08-01 00:00:00.0</td>
+					<td><span class="layui-badge layui-bg-green">B</span></td>
+					<td>
+						<button type="button" onclick="xadmin.open('面试筛选编辑','TheInterviewScreening-Update.html',1580,750)" class="layui-btn layui-btn-sm layui-btn-warm">筛选</button>
+					</td>
+				</tr>
+		    </tbody>
+			
+			<tfoot>
+				<tr align="center">
+					<td colspan="8">
+						<div id="page"></div>
+						 
+						<script src="/static/build/layui.js"></script>
+						<script>
+						layui.use('laypage', function(){
+						  var laypage = layui.laypage;
+						  
+						  //执行一个laypage实例
+						  laypage.render({
+						    elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
+						    ,count: 50 //数据总数，从服务端得到
+						  });
+						});
+						</script>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+		<!-- 表格元素结束 -->
+	</body>
+</html>

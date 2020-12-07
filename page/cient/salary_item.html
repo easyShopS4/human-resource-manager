@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Mr. Jiang" />
+		<title>人力资源档案管理设置</title>
+
+		<!-- 导航元素依赖 开始 -->
+		<link rel="stylesheet" href="../../css/font.css">
+		<link rel="stylesheet" href="../../css/xadmin.css">
+		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../js/xadmin.js"></script>
+		<!-- 导航元素依赖 结束 -->
+		<script type="text/javascript">
+			function deleteSalaryDetails(id){
+				$.ajax({
+				
+					url:"/HR_Fist/customiz/customizAction!doDeleteSalaryDetails",
+					data:"ssd.sdtId="+id,
+					dataType:"text",
+					success:function (){
+						alert("删除成功！");
+						location.reload();
+					},
+					type:"post"
+				});
+			}
+		</script>
+	
+		<script type="text/javascript">
+			
+				function submission(){
+					document.forms[0].submit();
+				}
+				
+				function page(currentPage){
+					document.getElementById("pid").value=currentPage;
+					document.forms[0].submit();
+				}
+		</script>
+
+</head>
+
+	<body>
+		<!-- 头部导航 开始
+			您正在做的业务是：人力资源--客户化设置--薪酬管理设置--薪酬项目设置
+		-->
+		<div class="x-nav">
+			<span class="layui-breadcrumb">
+		    <a href="">人力资源管理</a>
+		    <a href="">客户化设置管理</a>
+		     <a href="">薪酬管理设置</a>
+		    <a>
+		      <cite>薪酬项目设置</cite></a>
+		  </span>
+		  <input type="button" value="添加" style="line-height:1.6em;margin-top:3px;float:right" class="layui-btn layui-btn-sm layui-btn-normal" onclick="window.location.href='salary_item_register.html'" />
+		  </div>
+
+		<!-- 头部导航 结束 -->
+		<form action="../customiz/customizAction!findStandardDetails" method="post">
+			
+			<table class="layui-table" lay-skin="line">
+				<tr height="20">
+					<td width="80%" class="TD_STYLE1" align="center">
+						薪酬项目名称
+					</td>
+					<td width="20%" class="TD_STYLE1" align="center">
+						删除
+					</td>
+				</tr>
+				
+					
+					<tr height="20">
+						<td class="TD_STYLE2">
+						出差补助
+						</td>
+						<td  align="center" class="TD_STYLE2">
+							<a href="#">
+								<button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+							</a>
+						</td>
+					</tr>
+					
+					<tr height="20">
+						<td class="TD_STYLE2">
+						交通补贴
+						</td>
+						<td  align="center" class="TD_STYLE2">
+							<a href="#">
+								<button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+							</a>
+						</td>
+					</tr>
+					
+					<tr height="20">
+						<td class="TD_STYLE2">
+						住房补贴
+						</td>
+						<td  align="center" class="TD_STYLE2">
+							<a href="#">
+								<button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+							</a>
+						</td>
+					</tr>
+					
+					<tr height="20">
+						<td class="TD_STYLE2">
+						基本工资
+						</td>
+						<td  align="center" class="TD_STYLE2">
+							<a href="#">
+								<button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+							</a>
+						</td>
+					</tr>
+					
+					<tr height="20">
+						<td class="TD_STYLE2">
+						年终奖
+						</td>
+						<td  align="center" class="TD_STYLE2">
+							<a href="#">
+								<button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+							</a>
+						</td>
+					</tr>
+					
+					<tr height="20">
+						<td class="TD_STYLE2">
+						误餐补助
+						</td>
+						<td  align="center" class="TD_STYLE2">
+							<a href="#">
+								<button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+							</a>
+						</td>
+					</tr>
+					
+					<tr height="20">
+						<td class="TD_STYLE2">
+						出差补助
+						</td>
+						<td  align="center" class="TD_STYLE2">
+							<a href="#">
+								<button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+							</a>
+						</td>
+					</tr>
+					
+					<tr height="20">
+						<td class="TD_STYLE2">
+						交通补贴
+						</td>
+						<td  align="center" class="TD_STYLE2">
+							<a href="#">
+								<button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+							</a>
+						</td>
+					</tr>
+					
+					<tr height="20">
+						<td class="TD_STYLE2">
+						住房补贴
+						</td>
+						<td  align="center" class="TD_STYLE2">
+							<a href="#">
+								<button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+							</a>
+						</td>
+					</tr>
+					
+					<tr height="20">
+						<td class="TD_STYLE2">
+						基本工资
+						</td>
+						<td  align="center" class="TD_STYLE2">
+							<a href="#">
+								<button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+							</a>
+						</td>
+					</tr>
+					
+					<tr height="20">
+						<td class="TD_STYLE2">
+						年终奖
+						</td>
+						<td  align="center" class="TD_STYLE2">
+							<a href="#">
+								<button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+							</a>
+						</td>
+					</tr>
+					
+					<tr height="20">
+						<td class="TD_STYLE2">
+						误餐补助
+						</td>
+						<td  align="center" class="TD_STYLE2">
+							<a href="#">
+								<button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
+							</a>
+						</td>
+					</tr>
+			</table>
+			<br>
+			<br>
+			<th colspan="7" class="pager">
+				
+			</th>
+		</form>
+	</body>
+</html>

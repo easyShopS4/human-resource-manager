@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+			<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+			<meta name="renderer" content="webkit">
+			<!--国产浏览器高速模式-->
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<meta name="author" content="Mr. Jiang" />
+			<title>薪酬发放登记</title>
+			
+			<!-- 导航元素依赖 开始 -->	
+			<link rel="stylesheet" href="../../css/font.css">
+			<link rel="stylesheet" href="../../css/xadmin.css">
+			<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+			<script type="text/javascript" src="../../js/xadmin.js"></script>
+			<!-- 导航元素依赖 结束 -->
+			<script type="text/javascript">
+				function deji(){
+					location.href="";
+				}
+			</script>
+		</head>
+		<body>
+			<div class="x-nav">
+			  <span class="layui-breadcrumb">
+			    <a href="">人力资源管理</a>
+			    <a href="">薪酬发放管理</a>
+			    <a>
+			      <cite>薪酬发放登记</cite></a>
+			  </span>
+			  <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+			    <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+			</div>
+			<div class="x-nav" style="margin-top: 30px;height: 150px;">
+			    <span class="layui-breadcrumb">
+			    <a href="">薪酬单编号:</a>
+			    <label>HS1353753198460</label>
+				</span><br/>
+				<span class="layui-breadcrumb">
+				<a href="">机构:</a>
+				<label>I级机构</label>
+				</span><br/>
+				<span class="layui-breadcrumb">
+			    <a href="">机构总人数:</a>
+			    <label>8</label>
+				<a href="">，基本薪酬总数:</a>
+				<label>141821.0</label>
+				<a href="">，实发总数:</a>
+				<label>1998.0</label>
+			  </span>
+			  <span style="padding-left: 45%;">
+				 <a href="">登记人:</a>
+				 <label>batter</label>&nbsp;
+				 <a href="">登记时间:</a>
+				 <label>2020-11-30 12:20:40</label> 
+			  </span>
+			</div>	
+			<form class="layui-form" action="">
+				<table class="layui-table" lay-size="sm" style="width: 100%;">
+				    <colgroup>
+						<col width="150">
+						<col width="200">
+				    </colgroup>
+				    <thead>
+						<tr>
+							<th>序号</th>
+							<th>档案编号</th>
+							<th>姓名</th>
+							<th>出差补助</th>
+							<th>交通补贴</th>
+							<th>住房补贴</th>
+							<th>基本工资</th>
+							<th>年终奖</th>
+							<th>误餐补助</th>
+							<th>奖励金额</th>
+							<th>销售绩效总额</th>
+							<th>应扣金额</th>
+							<th>实发金额</th>
+						</tr> 
+				    </thead>
+					<tbody>
+						<tr>
+						<td>1</td>
+						<td>bt202011190644250035</td>
+						<td>杨幂</td>
+						<td>123.0</td>
+						<td>12312.0</td>
+						<td>12312.0</td>
+						<td>123.0</td>
+						<td>123.0</td>
+						<td>23.0</td>
+						<td>
+							<input type="text" style="width: 40%;"/>
+						</td>
+						<td>
+							<input type="text" style="width: 40%;"/>
+						</td>
+						<td>
+							<input type="text" style="width: 40%;"/>
+						</td>
+						<td>135827.0</td>
+						</tr>
+						
+					</tbody>
+					<tfoot>
+						<tr align="center">
+										<td colspan="12">
+											<div class="layui-form-item" >
+											  <div class="layui-input-block">
+												<button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
+												<button class="layui-btn">返回</button>
+											  </div>
+											</div>
+										</td>
+						</tr>
+					</tfoot>
+				</table>
+			</form>
+	</body>
+</html>

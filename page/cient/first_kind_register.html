@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Mr. Jiang" />
+		<title>人力资源档案管理设置</title>
+
+		<!-- 导航元素依赖 开始 -->
+		<link rel="stylesheet" href="../../css/font.css">
+		<link rel="stylesheet" href="../../css/xadmin.css">
+		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../js/xadmin.js"></script>
+		<!-- 导航元素依赖 结束 -->
+
+	</head>
+
+	<body>
+		<!-- 头部导航 开始
+			您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--I级机构设置--I级机构添加
+		-->
+		<div class="x-nav">
+			<span class="layui-breadcrumb">
+		    <a href="">人力资源管理</a>
+		    <a href="">客户化设置管理</a>
+		     <a href="">人力资源档案管理设置</a>
+		    <a href="">I级机构设置</a>
+		    <a>
+		      <cite>I级机构添加</cite></a>
+		  </span>
+			<a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+				<i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+		</div>
+		<!-- 头部导航 结束 -->
+
+		<!--
+        	作者：蒋友鹏
+        	时间：2020-11-30
+        	描述：表格开始
+        -->
+		<form name="configfilefirstkindForm" method="post" action="first_kind_register_success.html">
+
+			<table class="layui-table" lay-skin="line">
+				<tr>
+					<td class="layui-form-item">
+						I级机构编号
+					</td>
+					<td  class="layui-form-item">
+
+					</td>
+				</tr>
+				<tr>
+					<td class="layui-form-item">
+						I级机构名称
+					</td>
+					<td class="layui-form-item">
+						<input type="text" name="cffk.firstKindName" value="" class="INPUT_STYLE1">
+					</td>
+				</tr>
+				<tr>
+					<td class="layui-form-item">
+						薪酬发放责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
+					</td>
+					<td class="layui-form-item">
+						<textarea name="cffk.firstKindSalaryId" rows="4" class="TEXTAREA_STYLE1"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td class="layui-form-item">
+						销售责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
+					</td>
+					<td class="layui-form-item">
+						<textarea name="cffk.firstKindSaleId" rows="4" class="TEXTAREA_STYLE1"></textarea>
+					</td>
+				</tr>
+				<tr >
+					<td colspan="2" align="center">
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<input type="submit" value="提交" class="layui-btn">
+							<a href="first_kind.html"><input type="button" value="返回" class="layui-btn"></a>
+						</div>
+					</div>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<!--
+        	描述：结束
+        -->
+	</body>
+
+</html>

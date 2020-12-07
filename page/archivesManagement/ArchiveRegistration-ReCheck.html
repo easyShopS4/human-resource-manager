@@ -1,0 +1,108 @@
+	<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Mr. Jiang" />
+		<title>录用查询</title>
+		
+		<!-- 导航元素依赖 开始 -->	
+		<link rel="stylesheet" href="../../css/font.css">
+		<link rel="stylesheet" href="../../css/xadmin.css">
+		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../js/xadmin.js"></script>
+		<!-- 导航元素依赖 结束 -->
+	</head>
+	<body>
+		<!-- 头部导航 开始 -->
+		<div class="x-nav">
+		  <span class="layui-breadcrumb">
+		    <a href="">招聘管理</a>
+		    <a href="">录用管理</a>
+		    <a>
+		      <cite>录用查询	</cite></a>
+		  </span>
+		  <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+		    <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+		</div>
+		<div class="x-nav" style="margin-top: 30px;">
+		  <span class="layui-breadcrumb">
+		    <a href="">当前等待复核的人力资源档案总数：</a>
+		    <a href="">2</a>
+		    <a>
+		      <cite>例	</cite></a>
+		  </span>
+		</div>
+		<!-- 头部导航 结束 -->
+		<table class="layui-table" lay-skin="line">
+		    <colgroup>
+		      <col width="150">
+		      <col width="200">
+		      <col>
+		    </colgroup>
+		    <thead>
+		      <tr>
+		        <th>档案编号</th>
+		        <th>姓名</th>
+		        <th>性别</th>
+				<th>I级机构</th>
+				<th>II级机构</th>
+				<th>III级机构</th>
+				<th>职称</th>
+				<th>操作</th>
+		      </tr> 
+		    </thead>
+		    <tbody>
+				<tr>
+					<td>bt201211190711260800</td>
+					<td>姜凯	</td>
+					<td>男</td>
+					<td>总部</td>
+					<td>请选择</td>
+					<td>请选择</td>
+					<td>工程师</td>
+					<td>
+						<button type="button" onclick="xadmin.open('人力资源档案复核','ArchiveRegistration-ReCheck-Update.html',1580,750)" class="layui-btn layui-btn-sm layui-btn-normal">复核</button>
+					</td>
+				</tr>
+				<tr>
+					<td>bt201211190711160488</td>
+					<td>周奥	</td>
+					<td>男</td>
+					<td>总部</td>
+					<td>湖南分校区</td>
+					<td>长沙分校区1</td>
+					<td>工程师</td>
+					<td>
+						<button type="button" onclick="xadmin.open('人力资源档案复核','ArchiveRegistration-ReCheck-Update.html',1580,750)" class="layui-btn layui-btn-sm layui-btn-normal">复核</button>
+					</td>
+				</tr>
+		    </tbody>
+			
+			<tfoot>
+				<tr align="center">
+					<td colspan="8">
+						<div id="page"></div>
+						 
+						<script src="/static/build/layui.js"></script>
+						<script>
+						layui.use('laypage', function(){
+						  var laypage = layui.laypage;
+						  
+						  //执行一个laypage实例
+						  laypage.render({
+						    elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
+						    ,count: 50 //数据总数，从服务端得到
+						  });
+						});
+						</script>
+					</td>
+				</tr>
+			</tfoot>
+		</table>		
+	</body>
+</html>

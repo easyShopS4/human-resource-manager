@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Mr. Jiang" />
+		<title>人力资源档案管理设置</title>
+
+		<!-- 导航元素依赖 开始 -->
+		<link rel="stylesheet" href="../../css/font.css">
+		<link rel="stylesheet" href="../../css/xadmin.css">
+		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../js/xadmin.js"></script>
+		<!-- 导航元素依赖 结束 -->
+		
+	</head>
+
+	<body>
+		<!--
+        	作者：蒋友鹏
+        	时间：2020-12-01
+        	描述：您正在做的业务是：人力资源--客户化设置--其他设置--关键字查询设置
+        -->
+		<div class="x-nav">
+			<span class="layui-breadcrumb">
+		    <a href="">人力资源管理</a>
+		    <a href="">客户化设置管理</a>
+		     <a href="">其他设置</a>
+		    <a> <cite>关键字查询设置</cite></a>
+		  </span>
+		  </div>
+
+		<!-- 头部导航 结束 -->
+		<form action="../customiz/customizAction!findKeyName" method="post">
+			<table width="100%" border="0">
+				<tr class="TR_STYLE1">
+					<td width="18%">
+						请选择数据库表的名称
+					</td>
+					<td width="69%">
+						<select name="cpmk.primaryKeyTable" class="SELECT_STYLE2">
+							
+							<option value="ENGAGE_EXAM">
+								试卷登记表
+							</option>
+							
+							<option value="CONFIG_FILE_FIRST_KIND">
+								一级机构设置表
+							</option>
+							
+							<option value="SALARY_STANDARD">
+								薪酬标准基本信息表
+							</option>
+							
+							<option value="ENGAGE_INTERVIEW">
+								面试表
+							</option>
+							
+							<option value="MAJOR_CHANGE">
+								职位调动表
+							</option>
+							
+							<option value="SYS_ROLE">
+								角色表
+							</option>
+							
+							<option value="CONFIG_QUESTION_SECOND_KIND">
+								试题二级分类设置表
+							</option>
+							
+							<option value="SALARY_STANDARD_DETAILS">
+								薪酬标准单详细信息表
+							</option>
+							
+							<option value="ENGAGE_MAJOR_RELEASE">
+								职位发表登记表
+							</option>
+							
+							<option value="ENGAGE_ANSWER_DETAILS">
+								考试答题详细信息表
+							</option>
+							
+							<option value="ENGAGE_SUBJECTS">
+								试题题库登记表
+							</option>
+							
+							<option value="CONFIG_FILE_THIRD_KIND">
+								三级机构设置表
+							</option>
+							
+							<option value="TRAINING">
+								培训登记表
+							</option>
+							
+							<option value="SALARY_GRANT">
+								薪酬发放登记表
+							</option>
+							
+							<option value="SALARY_GRANT_DETAILS">
+								薪酬发放详细信息表
+							</option>
+							
+							<option value="SYS_ROLE_RIGHT">
+								模块角色表
+							</option>
+							
+							<option value="USER">
+								用户表
+							</option>
+							
+							<option value="CONFIG_FILE_SECOND_KIND">
+								二级机构设置表
+							</option>
+							
+							<option value="CONFIG_MAJOR">
+								职位设置表
+							</option>
+							
+							<option value="CONFIG_PUBLIC_CHAR">
+								公共字段设置表
+							</option>
+							
+							<option value="HUMAN_FILE">
+								人力资源档案表
+							</option>
+							
+							<option value="BONUS">
+								激励登记表
+							</option>
+							
+							<option value="SYS_RIGHT">
+								模块表
+							</option>
+							
+							<option value="ENGAGE_EXAM_DETAILS">
+								试卷详细信息表
+							</option>
+							
+							<option value="CONFIG_MAJOR_KIND">
+								职位分类设置表
+							</option>
+							
+							<option value="ENGAGE_RESUME">
+								简历管理表
+							</option>
+							
+							<option value="ENGAGE_ANSWER">
+								考试答题登记表
+							</option>
+							
+							<option value="CONFIG_QUESTION_FIRST_KIND">
+								试题一级分类设置表
+							</option>
+							
+							<option value="HUMANFILE_DIG">
+								记录人力资源更新表
+							</option>
+							
+						</select>
+					</td>
+					<td width="13%">
+						<input type="button" value="开始" class="layui-btn layui-btn-sm "
+							onclick="location.href='primary_key_register.html'">
+							<a href="salary_grant_mode.html">
+						<input type="button" value="返回" class="layui-btn layui-btn-sm ">
+						</a>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
+
