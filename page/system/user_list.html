@@ -38,7 +38,7 @@
 			</span>
 </div>
 <!-- 头部导航 结束 -->
-<table class="layui-table" lay-skin="line">
+<table class="layui-table">
 	<colgroup>
 		<col width="150">
 		<col width="200">
@@ -60,12 +60,12 @@
 		<td>Ⅱ级结构3 </td>
 		<td>Ⅲ级机构</td>
 		<td>经理级别 </td>
-		<td> 	杨阳 </td>
+		<td> 杨阳 </td>
 		<td>
 			<div class="layui-btn-group">
 				<button type="button" class="layui-btn" onclick="location.href='user_add.html'">增加用户</button>
 				<button type="button" class="layui-btn" onclick="location.href='user_edit.html'">编辑</button>
-				<button type="button" class="layui-btn">删除</button>
+				<button type="button" class="layui-btn user_delete_btn">删除</button>
 			</div>
 		</td>
 	</tr>
@@ -78,6 +78,7 @@
 			<div id="page"></div>
 
 			<script src="/static/build/layui.js"></script>
+
 			<script>
 				layui.use('laypage', function(){
 					var laypage = layui.laypage;
@@ -94,5 +95,33 @@
 	</tfoot>
 </table>
 
+<!--ajax加载用户管理列表-->
+<script type="text/javascript">
+	$(function(){
+		alert(1);
+		$.ajax({
+			url: "http://127.0.0.1:8080/ssm/users/findAllUser",
+			type: "post",
+			success:function (result){
+				console.log(result);
+			}
+		});
+
+
+	//删除单个用户
+		$(document.on("click",".user_delete_btn"),function (){
+			alert(1);
+			//弹出是否确认删除对话框
+			var userName = $(this). parent("tr").find("td:eq(1)").text();
+			if(confirm("确认删除【"+userName+"】吗?")){
+				//确认,发送ajax
+				$.ajax({
+					url:"删除访问路径"
+				});
+			}
+		});
+
+	});//加载方法结尾大括号
+</script>
 </body>
 </html>
