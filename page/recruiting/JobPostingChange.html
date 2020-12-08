@@ -38,70 +38,7 @@
 			</span>
 		</div>
 		<!-- 头部导航 结束 -->
-		
-		<!--<table class="layui-table" lay-skin="line">
-		    <colgroup>
-		      <col width="150">
-		      <col width="200">
-		      <col>
-		    </colgroup>
-		    <thead>
-		      <tr>
-		        <th>职位名称</th>
-		        <th>公司名称</th>
-		        <th>招聘人数</th>
-				<th>发布时间</th>
-				<th>截止时间</th>
-				<th>操作</th>
-		      </tr> 
-		    </thead>
-		    <tbody>
-				<tr>
-					<td>区域经理</td>
-					<td>软件公司</td>
-					<td>3</td>
-					<td>2012-08-01 12:00:00</td>
-					<td>2012-12-30 12:00:00</td>
-					<td>
-						<button type="button" onclick="xadmin.open('职位更改','JobPostingChange-Update.html',1000,650)" class="layui-btn layui-btn-sm layui-btn-normal">修改</button>
-						<button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
-					</td>
-				</tr>
-				
-				<tr>
-					<td>总经理</td>
-					<td>生物科技有限公司</td>
-					<td>2</td>
-					<td>2012-08-02 12:00:00</td>
-					<td>2012-11-15 12:00:00</td>
-					<td>
-						<button type="button" onclick="xadmin.open('职位更改','JobPostingChange-Update.html',1000,650)" class="layui-btn layui-btn-sm layui-btn-normal">修改</button>
-						<button type="button" class="layui-btn layui-btn-sm layui-btn-danger">删除</button>
-					</td>
-				</tr>	
-		    </tbody>
-			
-			<tfoot>
-				<tr align="center">
-					<td colspan="6">
-						<div id="page"></div>
-						 
-						<script src="/lib/layui/layui.js"></script>
-						<script>
-						layui.use('laypage', function(){
-						  let laypage = layui.laypage;
-						  
-						  //执行一个laypage实例
-						  laypage.render({
-						    elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
-						    ,count: 50 //数据总数，从服务端得到
-						  });
-						});
-						</script>
-					</td>
-				</tr>
-			</tfoot>
-		</table>		-->
+
 		<!-- 数据表格 -->
 		<table class="layui-hide" id="jobTable" lay-filter="jobTable"></table>
 
@@ -114,6 +51,8 @@
 			<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 		</div>
+
+		<!-- data table end~ -->
 
 		<script>
 			let tableIns;
@@ -160,7 +99,10 @@
 							})
 						});
 					} else if(layEvent === 'edit'){ //编辑
+
+						let id = data.mreId;
 						// 打开编辑页面~
+						xadmin.open('职位更改','JobPostingChange-Update.html?id=' + id,1000,650);
 
 					}
 				});
