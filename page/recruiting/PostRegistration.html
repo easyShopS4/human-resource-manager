@@ -1,244 +1,451 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
-		<meta name="renderer" content="webkit">
-		<!--国产浏览器高速模式-->
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="author" content="Mr. Jiang" />
-		<title>职位发布登记</title>
-		
-		<!-- 导航元素依赖 开始 -->
-		
-		<link rel="stylesheet" href="../../css/font.css">
-		<link rel="stylesheet" href="../../css/xadmin.css">
-		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
-		<script type="text/javascript" src="../../js/xadmin.js"></script>
-		
-		<!-- 导航元素依赖 结束 -->	
-	</head>
-	<body>
-		<!-- 头部导航 开始 -->
-		<div class="x-nav">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+	<meta name="renderer" content="webkit">
+	<!--国产浏览器高速模式-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Mr. Jiang" />
+	<title>职位发布登记</title>
+
+	<!-- 导航元素依赖 开始 -->
+
+	<link rel="stylesheet" href="../../css/font.css">
+	<link rel="stylesheet" href="../../css/xadmin.css">
+	<script src="../../lib/layui/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../../js/xadmin.js"></script>
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+
+	<!-- 导航元素依赖 结束 -->
+</head>
+<body>
+<!-- 头部导航 开始 -->
+<div class="x-nav">
 		  <span class="layui-breadcrumb">
 		    <a href="">招聘管理</a>
 		    <a href="">职位发布管理</a>
 		    <a>
 		      <cite>职位发布登记</cite></a>
 		  </span>
-		  <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
-		    <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
-		</div>
-		<!-- 头部导航 结束 -->
-		
-		
-		<!-- 表单元素开始 -->	
-		<form class="layui-form" action="">
-			<table class="layui-table" lay-skin="row">
-				<tbody>
-					<tr>
-						<td>
-							<div class="layui-form-item">
-								<label class="layui-form-label">I级机构</label>
-								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value=""></option>
-										<option value="0">北京</option>
-										<option value="1">上海</option>
-										<option value="2">广州</option>
-										<option value="3">深圳</option>
-										<option value="4">杭州</option>
-									</select>
-								</div>
-							</div>
-						</td>
-					  
-						<td>
-							<div class="layui-form-item">
-								<label class="layui-form-label">Ⅱ级机构</label>
-								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value=""></option>
-										<option value="0">北京</option>
-										<option value="1">上海</option>
-										<option value="2">广州</option>
-										<option value="3">深圳</option>
-										<option value="4">杭州</option>
-									</select>
-								</div>
-							</div>
-						</td>  
-						
-						<td>
-							<div class="layui-form-item">
-								<label class="layui-form-label">Ⅲ级机构</label>
-								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value=""></option>
-										<option value="0">北京</option>
-										<option value="1">上海</option>
-										<option value="2">广州</option>
-										<option value="3">深圳</option>
-										<option value="4">杭州</option>
-									</select>
-								</div>
-							</div>
-						</td> 
-						
-						<td>
-							<div class="layui-form-item">
-								<label class="layui-form-label">招聘类型</label>
-								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value=""></option>
-										<option value="0">北京</option>
-										<option value="1">上海</option>
-										<option value="2">广州</option>
-										<option value="3">深圳</option>
-										<option value="4">杭州</option>
-									</select>
-								</div>
-							</div>
-						</td> 
-					</tr>
-					
-					<tr>
-						<td>
-							<div class="layui-form-item">
-								<label class="layui-form-label">职业分类</label>
-								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value=""></option>
-										<option value="0">北京</option>
-										<option value="1">上海</option>
-										<option value="2">广州</option>
-										<option value="3">深圳</option>
-										<option value="4">杭州</option>
-									</select>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="layui-form-item">
-								<label class="layui-form-label">职业名称</label>
-								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value=""></option>
-										<option value="0">北京</option>
-										<option value="1">上海</option>
-										<option value="2">广州</option>
-										<option value="3">深圳</option>
-										<option value="4">杭州</option>
-									</select>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="layui-form-item">
-								<label class="layui-form-label">招聘人数</label>
-								<div class="layui-input-block">
-									<input type="number" name="title" required  lay-verify="required" placeholder="请输入人数" autocomplete="off" class="layui-input">
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="layui-form-item">
-								<label class="layui-form-label">登记人</label>
-								<div class="layui-input-block">
-									<input type="text" name="title" required  lay-verify="required" placeholder="姓名" autocomplete="off" class="layui-input">
-								</div>
-							</div>
-						</td>
-					</tr>
-					
-					<tr>
-						<td>
-							<div class="layui-form-item">
-								<label class="layui-form-label">截止日期</label>
-								<div class="layui-input-block">
-									<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
-									  <input type="text" placeholder="请选中日期"	 class="layui-input" id="test1">
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="layui-form-item">
-								<label class="layui-form-label">登记时间</label>
-								<div class="layui-input-block">
-									<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
-									  <input type="text" placeholder="请选中日期"	 class="layui-input" id="test2">
-									</div>
-								</div>
-							</div>
-						</td>
-					</tr>
-					
-					<tr>
-						<td colspan="4">
-							<div class="layui-form-item layui-form-text">
-							  <label class="layui-form-label">职位描述</label>
-							  <div class="layui-input-block">
-							    <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
-							  </div>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="4">
-							<div class="layui-form-item layui-form-text">
-							  <label class="layui-form-label">招聘要求</label>
-							  <div class="layui-input-block">
-							    <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
-							  </div>
-							</div>
-						</td>
-					</tr>
-					
-					<tr align="center">
-						<td colspan="4">
-							<div class="layui-form-item">
-							  <div class="layui-input-block">
-							    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-							    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-							  </div>
-							</div>
-						</td>
-					</tr>
-					
-				</tbody>
-			</table>
-		</form>
-		<!-- 表单元素结束 -->
-		
-		<script>
-			/* 
-				下拉框依赖
-			 */
-			layui.use('form', function(){
-			  var form = layui.form;
-			  
-			  //监听提交
-			  form.on('submit(formDemo)', function(data){
-				layer.msg(JSON.stringify(data.field));
-				return false;
-			  });
-			});	
-				
-			layui.use('laydate', function(){
-			  var laydate = layui.laydate;
-			  
-			  //执行一个laydate实例
-			  laydate.render({
-				elem: '#test1',type:'datetime'//指定元素
-			  });
-			  //执行一个laydate实例
-			  laydate.render({
-					elem: '#test2',type:'datetime' //指定元素
-			  });
-			});
-		</script>	
-	</body>
+	<a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+		<i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+</div>
+<!-- 头部导航 结束 -->
+
+
+<!-- 表单元素开始 -->
+<form class="layui-form" id="frm">
+	<table class="layui-table" lay-skin="row">
+		<tbody>
+		<tr>
+			<td>
+				<div class="layui-form-item">
+					<label class="layui-form-label">I级机构</label>
+					<div class="layui-input-block">
+						<select name="firstKindId" id="firstKindId" lay-filter="firstKind" lay-verify="required">
+							<option value=""></option>
+						</select>
+					</div>
+				</div>
+			</td>
+
+			<td>
+				<div class="layui-form-item">
+					<label class="layui-form-label">Ⅱ级机构</label>
+					<div class="layui-input-block">
+						<select name="secondKindId" id="secondKindId" lay-filter="secondKind" lay-verify="required">
+							<option value=""></option>
+						</select>
+					</div>
+				</div>
+			</td>
+
+			<td>
+				<div class="layui-form-item">
+					<label class="layui-form-label">Ⅲ级机构</label>
+					<div class="layui-input-block">
+						<select id="thirdKindId" name="thirdKindId" lay-filter="thirdKind" lay-verify="required">
+							<option value=""></option>
+						</select>
+					</div>
+				</div>
+			</td>
+
+			<td>
+				<div class="layui-form-item">
+					<label class="layui-form-label">招聘类型</label>
+					<div class="layui-input-block">
+						<select name="engageType" lay-verify="required">
+							<option value=""></option>
+							<option value="社会招聘">社会招聘</option>
+							<option value="校园招聘">校园招聘</option>
+						</select>
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="layui-form-item">
+					<label class="layui-form-label">职位分类</label>
+					<div class="layui-input-block">
+						<select id="majorKindId" name="majorKindId" lay-verify="required">
+							<option value=""></option>
+						</select>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="layui-form-item">
+					<label class="layui-form-label">职位名称</label>
+					<div class="layui-input-block">
+						<select id="majorId" name="majorId" lay-verify="required">
+							<option value=""></option>
+						</select>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="layui-form-item">
+					<label class="layui-form-label">招聘人数</label>
+					<div class="layui-input-block">
+						<input type="number" name="humanAmount" required  lay-verify="required" placeholder="请输入人数" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="layui-form-item">
+					<label class="layui-form-label">登记人</label>
+					<div class="layui-input-block">
+						<input type="text" name="register" required  lay-verify="required" placeholder="姓名" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<div class="layui-form-item">
+					<label class="layui-form-label">截止日期</label>
+					<div class="layui-input-block">
+						<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+							<input type="text" placeholder="请选中日期"	name="deadline" class="layui-input" id="test1">
+						</div>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="layui-form-item">
+					<label class="layui-form-label">登记时间</label>
+					<div class="layui-input-block">
+						<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+							<input type="text" placeholder="请选中日期" name="registerTime" class="layui-input" id="test2">
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td colspan="4">
+				<div class="layui-form-item layui-form-text">
+					<label class="layui-form-label">职位描述</label>
+					<div class="layui-input-block">
+						<textarea name="majorDescribe" placeholder="请输入内容" class="layui-textarea"></textarea>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<div class="layui-form-item layui-form-text">
+					<label class="layui-form-label">招聘要求</label>
+					<div class="layui-input-block">
+						<textarea name="engageRequired" placeholder="请输入内容" class="layui-textarea"></textarea>
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr align="center">
+			<td colspan="4">
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button type="button" class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		</tbody>
+	</table>
+</form>
+<!-- 表单元素结束 -->
+
+<script>
+
+
+	/*
+        下拉框依赖
+     */
+	layui.use('form', function(){
+		let form = layui.form;
+
+		//监听提交
+		form.on('submit(formDemo)', function(data){
+			// layer.msg(JSON.stringify(data.field));
+			// console.log(JSON.stringify(data.field))
+
+			// firstKindName secondKindName thirdKindName
+			// majorKindName majorName
+			let firstKindName = $("#firstKindId option:selected").text().trim();
+			let secondKindName = $("#secondKindId option:selected").text().trim();
+			let thirdKindName = $("#thirdKindId option:selected").text().trim();
+			let majorKindName = $("#majorKindId option:selected").text().trim();
+			let majorName = $("#majorId option:selected").text().trim();
+
+			let post_data = "firstKindName=" + firstKindName + "&secondKindName=" + secondKindName
+				+ "&thirdKindName=" + thirdKindName + "&majorKindName=" + majorKindName + "&majorName=" + majorName + "&";
+
+			/*let tmp = {"firstKindName": firstKindName, "secondKindName": secondKindName, "thirdKindName": thirdKindName,
+						"majorKindName": majorKindName, "majorName": majorName}*/
+
+			post_data = post_data + $("#frm").serialize();
+
+			$.ajax({
+				url: "http://127.0.0.1:8080/ssm/engage-major-release/add",
+				data: post_data,
+				type: "post",
+				dataType: "JSON",
+				success: res => {
+					console.log(res)
+				},
+				error: e => {
+					console.log(e)
+				}
+			})
+
+			return false;
+		});
+	});
+
+	layui.use('laydate', function(){
+		var laydate = layui.laydate;
+
+		//执行一个laydate实例
+		laydate.render({
+			elem: '#test1',type:'datetime'//指定元素
+		});
+		//执行一个laydate实例
+		laydate.render({
+			elem: '#test2',type:'datetime' //指定元素
+		});
+	});
+
+
+
+	layui.use(['layer', 'jquery', 'form'], function () {
+		let layer = layui.layer,
+				$ = layui.jquery,
+				form = layui.form;
+
+		$(function () {
+
+			// 加载所有的一级机构
+			$.ajax({
+				url: "http://127.0.0.1:8080/ssm/config-file-first-kind/all",
+				type: "get",
+				success: res => {
+					// console.log(res)
+
+					$("#firstKindId option:gt(0)").remove()
+
+					$.each(res.data, function (index, item) {
+						$("#firstKindId").append(new Option(item.firstKindName, item.firstKindId))
+					})
+
+					/*$.each(data, function (index, item) {
+						$('#areaId').append(new Option(item.areaName, item.areaId));// 下拉菜单里添加元素
+					});*/
+					layui.form.render("select");//重新渲染 固定写法
+				},
+				error: e => {
+					console.log(e)
+				}
+			})
+
+			// 加载二级机构
+			$.ajax({
+				url: "http://127.0.0.1:8080/ssm/config-file-second-kind/all",
+				type: "get",
+				success: res => {
+					// console.log(res)
+					$("#secondKindId option:gt(0)").remove()
+
+					$.each(res.data, function (index, item) {
+						$("#secondKindId").append(new Option(item.secondKindName, item.secondKindId))
+					})
+
+					layui.form.render("select")
+				},
+				error: e => {
+					console.log(e)
+				}
+			})
+
+			// 加载第三个下拉框
+			$.ajax({
+				url: "http://127.0.0.1:8080/ssm/config-file-third-kind/all",
+				type: "get",
+				success: res => {
+					// console.log(res)
+					$("#thirdKindId option:gt(0)").remove();
+					$.each(res.data, function (index, item) {
+						$("#thirdKindId").append(new Option(item.thirdKindName, item.thirdKindId))
+					})
+
+					// 刷新下拉框
+					layui.form.render("select")
+				},
+				error: e => {
+					console.log(e)
+				}
+			})
+
+
+			/**  三个机构的联动事件  **/
+			// jq 的change在layui里面是失效的~
+
+			// 职位分类
+			$.ajax({
+				url: "http://127.0.0.1:8080/ssm/config-major-kind/all",
+				type: "get",
+				success: res => {
+					// console.log(res)
+					$("#majorKindId option:gt(0)").remove()
+
+					$.each(res.data, function (index, item) {
+						$("#majorKindId").append(new Option(item.majorKindName, item.majorKindId))
+						layui.form.render('select')
+					})
+				}
+			})
+
+			// 职业名称
+			$.ajax({
+				url: "http://127.0.0.1:8080/ssm/config-major/all",
+				type: "get",
+				success: res => {
+					// console.log(res)
+					$("#majorId option:gt(0)").remove()
+
+					$.each(res.data, function (index, item) {
+						$("#majorId").append(new Option(item.majorName, item.makId))
+						layui.form.render('select')
+					})
+				}
+			})
+
+
+		});
+
+
+		// 第一种机构的下拉框的改变事件
+		form.on('select(firstKind)', function (data) {
+			// console.log(data.elem); //得到select原始DOM对象
+			// console.log(data.value); //得到被选中的值
+
+			let val = data.value; // id
+
+			if (val) {
+				// 选中改变了, 联动~
+				let url = "http://127.0.0.1:8080/ssm/config-file-first-kind/getByFistKindId/" + val;
+				$.ajax({
+					url: url,
+					type: "get",
+					success: res => {
+						console.log(res.data)
+
+						let data1 = res.data[0];
+						let data2 = res.data[1];
+						let data3 = res.data[2];
+
+						kind_select(data1, data2, data3)
+					}
+				})
+			}
+
+		})
+
+		// 2
+		form.on('select(secondKind)', function (data) {
+
+			let val = data.value;
+
+			if (val) {
+				$.ajax({
+					url: "http://127.0.0.1:8080/ssm/config-file-second-kind/getBySecondId/" + val,
+					type: "get",
+					success: res => {
+						console.log(res.data)
+						// 1. 2级
+						let data1 = res.data[0];
+						// 3 级
+						let data2 = res.data[1];
+
+						kind_select(data1, data1, data2)
+					}
+				})
+			}
+		})
+
+		// 3
+		form.on('select(thirdKind)', function (data) {
+
+			let val = data.value;
+
+			if (val) {
+				$.ajax({
+					url: "http://127.0.0.1:8080/ssm/config-file-third-kind/getByThirdId/" + val,
+					type: "get",
+					success: res => {
+						console.log(res.data)
+
+						let data = res.data;
+
+						kind_select(data, data, data)
+					}
+				})
+			}
+		})
+
+		// 333
+		function kind_select(data1, data2, data3) {
+			$("#firstKindId option").remove()
+			$.each(data1, function (index, item) {
+				$("#firstKindId").append(new Option(item.firstKindName, item.firstKindId))
+				layui.form.render("select")
+			})
+
+			$("#secondKindId option").remove()
+			$.each(data2, function (index, item) {
+				$("#secondKindId").append(new Option(item.secondKindName, item.secondKindId))
+				layui.form.render("select")
+			})
+
+			$("#thirdKindId option").remove()
+			$.each(data3, function (index, item) {
+				$("#thirdKindId").append(new Option(item.thirdKindName, item.thirdKindId))
+				layui.form.render("select")
+			})
+		}
+
+	});
+
+</script>
+</body>
 </html>
