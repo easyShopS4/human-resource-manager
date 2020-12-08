@@ -222,7 +222,10 @@
 				type: "post",
 				dataType: "JSON",
 				success: res => {
-					console.log(res)
+					// console.log(res)
+					if (res.code == 200) {
+						layui.layer.msg("发布成功~")
+					}
 				},
 				error: e => {
 					console.log(e)
