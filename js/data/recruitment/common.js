@@ -182,22 +182,39 @@ layui.use(['layer', 'jquery', 'form'], function () {
     // 333
     function kind_select(data1, data2, data3) {
         $("#firstKindId option").remove()
-        $.each(data1, function (index, item) {
-            $("#firstKindId").append(new Option(item.firstKindName, item.firstKindId))
-            layui.form.render("select")
-        })
+        if (data1.length > 0) {
+            $.each(data1, function (index, item) {
+                $("#firstKindId").append(new Option(item.firstKindName, item.firstKindId))
+                // layui.form.render("select")
+            })
+        } else {
+            $("#firstKindId").append(new Option("", "-1"))
+        }
+
 
         $("#secondKindId option").remove()
-        $.each(data2, function (index, item) {
-            $("#secondKindId").append(new Option(item.secondKindName, item.secondKindId))
-            layui.form.render("select")
-        })
+        if (data2.length > 0) {
+            $.each(data2, function (index, item) {
+                $("#secondKindId").append(new Option(item.secondKindName, item.secondKindId))
+                // layui.form.render("select")
+            })
+        } else {
+            $("#secondKindId").append(new Option("", "-1"))
+        }
+
 
         $("#thirdKindId option").remove()
-        $.each(data3, function (index, item) {
-            $("#thirdKindId").append(new Option(item.thirdKindName, item.thirdKindId))
-            layui.form.render("select")
-        })
+        if (data3.length > 0) {
+            $.each(data3, function (index, item) {
+                $("#thirdKindId").append(new Option(item.thirdKindName, item.thirdKindId))
+                // layui.form.render("select")
+            })
+        } else {
+            $("#thirdKindId").append(new Option("", "-1"))
+        }
+
+        layui.form.render("select")
+
     }
 
 })

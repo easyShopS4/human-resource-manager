@@ -34,7 +34,7 @@
 		<!-- 头部导航 结束 -->
 		
 		<!-- 表单元素开始 -->
-		<form class="layui-form" action="">
+		<form class="layui-form" id="frm">
 			<table class="layui-table" lay-skin="row">
 				<tbody>
 					<tr>
@@ -45,8 +45,8 @@
 
 									<input type="hidden" name="mreId" id="mreId">
 
-									<select name="firstKindId" id="firstKindId" lay-filter="firstKind" lay-verify="required">
-										<option value=""></option>
+									<select name="firstKindId" id="firstKindId" lay-filter="firstKind">
+										<option value="-1"></option>
 									</select>
 								</div>
 							</div>
@@ -56,8 +56,8 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">Ⅱ级机构</label>
 								<div class="layui-input-block">
-									<select name="secondKindId" id="secondKindId" lay-filter="secondKind" lay-verify="required">
-										<option value=""></option>
+									<select name="secondKindId" id="secondKindId" lay-filter="secondKind">
+										<option value="-1"></option>
 									</select>
 								</div>
 							</div>
@@ -67,8 +67,8 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">Ⅲ级机构</label>
 								<div class="layui-input-block">
-									<select id="thirdKindId" name="thirdKindId" lay-filter="thirdKind" lay-verify="required">
-										<option value=""></option>
+									<select id="thirdKindId" name="thirdKindId" lay-filter="thirdKind">
+										<option value="-1"></option>
 									</select>
 								</div>
 							</div>
@@ -176,12 +176,45 @@
 			/* 
 				下拉框依赖
 			 */
-			layui.use('form', function(){
+			layui.use(['form', 'layer', 'jquery'], function(){
 			  let form = layui.form;
+			  let layer = layui.layer;
+			  let $ = layui.jquery;
 			  
 			  //监听提交
 			  form.on('submit(formDemo)', function(data){
-				layer.msg(JSON.stringify(data.field));
+				// layer.msg(JSON.stringify(data.field));
+
+				  let firstKindName = $("#firstKindId option:selected").text().trim();
+				  let secondKindName = $("#secondKindId option:selected").text().trim();
+				  let thirdKindName = $("#thirdKindId option:selected").text().trim();
+				  let majorKindName = $("#majorKindId option:selected").text().trim();
+				  let majorName = $("#majorId option:selected").text().trim();
+
+				  let post_data = "firstKindName=" + firstKindName + "&secondKindName=" + secondKindName
+						  + "&thirdKindName=" + thirdKindName + "&majorKindName=" + majorKindName + "&majorName=" + majorName + "&";
+
+				  post_data = post_data + $("#frm").serialize();
+
+				  // console.log(post_data)
+
+				  $.ajax({
+					url: "http://127.0.0.1:8080/ssm/engage-major-release/upd",
+					type: "post",
+					data: post_data,
+					success: res => {
+						console.log(res)
+						if (res.code === 200) {
+							layer.msg(res.message)
+						} else {
+							layer.msg(res.message)
+						}
+					},
+					error: e => {
+						console.log(e)
+					}
+				})
+
 				return false;
 			  });
 			});	
@@ -203,7 +236,6 @@
 			// my operation
 			layui.use([ 'jquery', 'layer', 'form', 'table'], function() {
 				let $ = layui.jquery;
-				let layer = layui.layer;
 				let form = layui.form;
 
 
@@ -217,9 +249,19 @@
 						if (res.code === 200) {
 							console.log(res.data)
 
-							$("#firstKindId").find("option[value='" + res.data.firstKindId +"']").attr("selected",true);
-							$("#secondKindId").find("option[value='" + res.data.secondKindId +"']").attr("selected",true);
-							$("#thirdKindId").find("option[value='" + res.data.thirdKindId +"']").attr("selected",true);
+							let l1 = res.data.firstKindId;
+							let l2 = res.data.secondKindId;
+							let l3 = res.data.thirdKindId;
+
+							if (l1>0) {
+								$("#firstKindId").find("option[value='" + l1 +"']").attr("selected",true);
+							}
+							if (l2>0) {
+								$("#secondKindId").find("option[value='" + l2 +"']").attr("selected",true);
+							}
+							if (l3>0) {
+								$("#thirdKindId").find("option[value='" + l3 +"']").attr("selected",true);
+							}
 
 							$("#engageType").find("option[value='" + res.data.engageType +"']").attr("selected",true);
 							$("#majorKindId").find("option[value='" + res.data.majorKindId +"']").attr("selected",true);
@@ -229,6 +271,9 @@
 							$("#test1").val(res.data.deadline)
 							$("#engageRequired").val(res.data.engageRequired)
 							$("#majorDescribe").val(res.data.majorDescribe)
+
+							// some name...
+							$("#mreId").val(res.data.mreId)
 
 							form.render('select') // 刷新
 							// engageRequired majorDescribe

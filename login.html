@@ -69,6 +69,10 @@
                                 $("#msg").html(res.message);
                                 break
                             case 200:
+                                // token
+                                let data = res.data;
+                                localStorage.setItem("jwtToken", data)
+
                                 location.href = "page/index.html"
                                 break;
                         }

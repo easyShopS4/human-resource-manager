@@ -75,7 +75,15 @@
 					, limit: 1 //默认采用2
 					, cols: [[   //列表数据
 						{field: 'mreId', title: 'ID', align: 'center', width: '50'}
-						, {field: 'secondKindName', title: '公司名称', align: 'center'}
+						, {field: 'firstKindName', title: '一级公司名称', align: 'center', templet:function(d){
+								return d.firstKindName==''?'暂无': d.firstKindName;
+						}}
+						, {field: 'secondKindName', title: '二级公司名称', align: 'center', templet:function(d){
+								return d.secondKindName==''?'暂无': d.secondKindName;
+						}}
+						, {field: 'thirdKindName', title: '三级公司名称', align: 'center', templet:function(d){
+								return d.thirdKindName==''?'暂无': d.thirdKindName;
+						}}
 						, {field: 'humanAmount', title: '招聘人数', align: 'center'}
 						, {field: 'registerTime', title: '发布时间', align: 'center'}
 						, {field: 'deadline', title: '过期时间', align: 'center'}
@@ -92,10 +100,14 @@
 						layer.confirm('真的删除这条招聘信息吗', function(index){
 							let mreId = data.mreId;
 							//向服务端发送删除指令
-							$.post("user/del/" + mreId, {_method: "delete"},function(res){
-								layer.msg(res);
-								//刷新数据 表格
-								tableIns.reload();
+							$.post("http://127.0.0.1:8080/ssm/engage-major-release/del/" + mreId, {_method: "delete"},function(res){
+								if (res.code === 200) {
+									layer.msg(res.message);
+									//刷新数据 表格
+									tableIns.reload();
+								} else {
+									layer.msg(res.message)
+								}
 							})
 						});
 					} else if(layEvent === 'edit'){ //编辑
