@@ -49,7 +49,7 @@ layui.use(['layer', 'jquery', 'form'], function () {
         },
         error: e => {
             // 进入error回调
-            console.log('err', e)
+            // console.log('err', e)
         }
     })
 

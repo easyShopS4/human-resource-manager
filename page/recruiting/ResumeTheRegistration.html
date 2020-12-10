@@ -33,7 +33,7 @@
 		</div>
 		<!-- 头部导航 结束 -->
 		<!-- 表单元素开始 -->
-		<form class="layui-form" action="">
+		<form class="layui-form" id="frm">
 			<table class="layui-table" lay-skin="row">
 				<tbody>
 					<tr>
@@ -41,8 +41,8 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">职位分类</label>
 								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value="0">销售</option>
+									<select id="majorKindId" name="humanMajorKindId" lay-verify="required">
+										<option value="0"></option>
 									</select>
 								</div>
 							</div>
@@ -52,8 +52,8 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">职位名称</label>
 								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value="0">总经理</option>
+									<select id="majorId" name="humanMajorId" lay-verify="required">
+										<option value="0"></option>
 									</select>
 								</div>
 							</div>
@@ -64,9 +64,9 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">招聘类型</label>
 								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value="">社会招聘</option>
-										<option value="0">校园招聘</option>
+									<select name="engageType" lay-verify="required">
+										<option value="社会招聘">社会招聘</option>
+										<option value="校园招聘">校园招聘</option>
 									</select>
 								</div>
 							</div>
@@ -85,7 +85,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">姓名</label>
 								<div class="layui-input-block">
-									<input type="text" name="title" required  lay-verify="required" placeholder="名字" autocomplete="off" class="layui-input">
+									<input type="text" name="humanName" required  lay-verify="required" placeholder="名字" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</td>
@@ -93,9 +93,9 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">性别</label>
 								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value="">男</option>
-										<option value="0">女</option>
+									<select name="humanSex" lay-verify="required">
+										<option value="0">男</option>
+										<option value="1">女</option>
 									</select>
 								</div>
 							</div>
@@ -104,7 +104,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">EMAIL</label>
 								<div class="layui-input-block">
-									<input type="email" name="title" required  lay-verify="required" placeholder="邮箱" autocomplete="off" class="layui-input">
+									<input type="email" name="humanEmail" required  lay-verify="required" placeholder="邮箱" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</td>
@@ -115,7 +115,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">电话</label>
 								<div class="layui-input-block">
-									<input type="text" name="title" required  lay-verify="required" placeholder="手机号" autocomplete="off" class="layui-input">
+									<input type="text" name="humanTelephone" required  lay-verify="required" placeholder="手机号" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</td>
@@ -123,7 +123,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">家庭电话</label>
 								<div class="layui-input-block">
-									<input type="text" name="title" required  lay-verify="required" placeholder="家庭电话" autocomplete="off" class="layui-input">
+									<input type="text" name="humanHomephone" required  lay-verify="required" placeholder="家庭电话" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</td>
@@ -131,7 +131,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">手机</label>
 								<div class="layui-input-block">
-									<input type="text" name="title" required  lay-verify="required" placeholder="手机号" autocomplete="off" class="layui-input">
+									<input type="text" name="humanMobilephone" required  lay-verify="required" placeholder="手机号" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</td>
@@ -142,7 +142,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">地址</label>
 								<div class="layui-input-block">
-									<input type="text" name="title" required  lay-verify="required" placeholder="现在居住地址" autocomplete="off" class="layui-input">
+									<input type="text" name="humanAddress" required  lay-verify="required" placeholder="现在居住地址" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</td>
@@ -150,7 +150,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">邮编</label>
 								<div class="layui-input-block">
-									<input type="text" name="title" required  lay-verify="required" placeholder="邮箱编码" autocomplete="off" class="layui-input">
+									<input type="text" name="humanPostcode" required  lay-verify="required" placeholder="邮箱编码" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</td>					
@@ -161,9 +161,9 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">国籍</label>
 								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value="">中国</option>
-										<option value="0">外国</option>
+									<select name="humanNationality" lay-verify="required">
+										<option value="中国">中国</option>
+										<option value="外国">外国</option>
 									</select>
 								</div>
 							</div>
@@ -172,7 +172,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">出生地</label>
 								<div class="layui-input-block">
-									<input type="text" name="title" required  lay-verify="required" placeholder="身份证出生地" autocomplete="off" class="layui-input">
+									<input type="text" name="humanBirthplace" required  lay-verify="required" placeholder="身份证出生地" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</td>
@@ -181,7 +181,7 @@
 								<label class="layui-form-label">生日</label>
 								<div class="layui-input-block">
 									<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
-									  <input type="text" placeholder="请选中日期"	 class="layui-input" id="test1">
+									  <input type="text" name="humanBirthday" placeholder="请选中日期"	 class="layui-input" id="test1">
 									</div>
 								</div>
 							</div>
@@ -193,9 +193,9 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">民族</label>
 								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value="">汉族</option>
-										<option value="0">回族</option>
+									<select name="humanRace" lay-verify="required">
+										<option value="汉族">汉族</option>
+										<option value="回族">回族</option>
 									</select>
 								</div>
 							</div>
@@ -204,7 +204,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">宗教信仰</label>
 								<div class="layui-input-block">
-									<input type="text" name="title" required  lay-verify="required" placeholder="必填" autocomplete="off" class="layui-input">
+									<input type="text" name="humanReligion" required  lay-verify="required" placeholder="必填" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</td>
@@ -212,9 +212,9 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">政治面貌</label>
 								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value="">群众</option>
-										<option value="0">党员</option>
+									<select name="humanParty" lay-verify="required">
+										<option value="群众">群众</option>
+										<option value="党员">党员</option>
 									</select>
 								</div>
 							</div>
@@ -226,7 +226,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">身份证号码</label>
 								<div class="layui-input-block">
-									<input type="text" name="title" required  lay-verify="required" placeholder="必填" autocomplete="off" class="layui-input">
+									<input type="text" name="humanIdcard" required  lay-verify="required" placeholder="必填" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</td>
@@ -234,7 +234,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">年龄</label>
 								<div class="layui-input-block">
-									<input type="number" name="title" required  lay-verify="required" placeholder="必填" autocomplete="off" class="layui-input">
+									<input type="number" name="humanAge" required  lay-verify="required" placeholder="必填" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</td>
@@ -242,7 +242,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">毕业院校</label>
 								<div class="layui-input-block">
-									<input type="text" name="title" required  lay-verify="required" placeholder="必填" autocomplete="off" class="layui-input">
+									<input type="text" name="humanCollege" required  lay-verify="required" placeholder="必填" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</td>
@@ -250,9 +250,11 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">学历</label>
 								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value="">高中</option>
-										<option value="0">本科</option>
+									<select name="humanEducatedDegree" lay-verify="required">
+										<option value="大专">大专</option>
+										<option value="本科">本科</option>
+										<option value="研究生">研究生</option>
+										<option value="博士">博士</option>
 									</select>
 								</div>
 							</div>
@@ -264,9 +266,11 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">教育年限</label>
 								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value="">12</option>
-										<option value="0">16</option>
+									<select name="humanEducatedYears" lay-verify="required">
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="18">18</option>
+										<option value="20">20</option>
 									</select>
 								</div>
 							</div>
@@ -275,9 +279,9 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">学历专业</label>
 								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value="">计算机</option>
-										<option value="0">生物工程</option>
+									<select name="humanEducatedMajor" lay-verify="required">
+										<option value="计算机">计算机</option>
+										<option value="生物工程">生物工程</option>
 									</select>
 								</div>
 							</div>
@@ -286,7 +290,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">薪酬要求</label>
 								<div class="layui-input-block">
-									<input type="number" name="title" required  lay-verify="required" placeholder="必填" autocomplete="off" class="layui-input">
+									<input type="number" name="salaryStandardName" required  lay-verify="required" placeholder="必填" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</td>
@@ -295,7 +299,7 @@
 								<label class="layui-form-label">注册时间</label>
 								<div class="layui-input-block">
 									<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
-									  <input type="text" placeholder="请选中日期" class="layui-input" id="test2">
+									  <input type="text" name="registerTime" placeholder="请选中日期" class="layui-input" id="test2">
 									</div>
 								</div>
 							</div>
@@ -307,9 +311,11 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">特长</label>
 								<div class="layui-input-block">
-									<select name="city" lay-verify="required">
-										<option value="">sql</option>
-										<option value="0">java</option>
+									<select name="humanSpecility" lay-verify="required">
+										<option value="java">java</option>
+										<option value="python">python</option>
+										<option value="go">go</option>
+										<option value="javascript">javascript</option>
 									</select>
 								</div>
 							</div>
@@ -318,7 +324,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">爱好</label>
 								<div class="layui-input-block">
-									<input type="text" name="title" required  lay-verify="required" placeholder="必填" autocomplete="off" class="layui-input">
+									<input type="text" name="humanHobby" required  lay-verify="required" placeholder="必填" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</td>
@@ -329,7 +335,7 @@
 							<div class="layui-form-item layui-form-text">
 							  <label class="layui-form-label">个人履历</label>
 							  <div class="layui-input-block">
-							    <textarea name="desc" placeholder="详细的简历" class="layui-textarea"></textarea>
+							    <textarea name="humanHistoryRecords" placeholder="详细的简历" class="layui-textarea"></textarea>
 							  </div>
 							</div>
 						</td>
@@ -339,7 +345,7 @@
 							<div class="layui-form-item layui-form-text">
 							  <label class="layui-form-label">备注</label>
 							  <div class="layui-input-block">
-							    <textarea name="desc" placeholder="说明需求" class="layui-textarea"></textarea>
+							    <textarea name="remark" placeholder="说明需求" class="layui-textarea"></textarea>
 							  </div>
 							</div>
 						</td>
@@ -366,12 +372,37 @@
 			/* 
 				下拉框依赖
 			 */
-			layui.use('form', function(){
-			  var form = layui.form;
+			layui.use(['form', 'jquery', 'layer'], function(){
+
+			  let form = layui.form;
+			  let $ = layui.jquery;
+			  let layer = layui.layer;
 			  
 			  //监听提交
 			  form.on('submit(formDemo)', function(data){
 				layer.msg(JSON.stringify(data.field));
+
+				let post_data = $("#frm").serialize();
+				let tmp = "&humanMajorName=" + $("#majorId option:selected").text()
+						+ "&humanMajorKindName=" + $("#majorKindId option:selected").text()
+
+				post_data = post_data + tmp;
+
+				$.ajax({
+					url: "http://127.0.0.1:8080/ssm/engage-resume/add",
+					type: "post",
+					data: post_data,
+					success: res => {
+						console.log(res)
+						if (res.code === 200) {
+							layer.msg("您的简历投入已经成功~")
+						}
+					},
+					error: e => {
+						console.log(e)
+					}
+				})
+
 				return false;
 			  });
 			});	
@@ -388,6 +419,44 @@
 			  		elem: '#test2',type:'datetime'//指定元素
 			  });
 			});
+
+			layui.use(['form', 'jquery', 'layer'], function () {
+				let form = layui.form;
+				let $ = layui.jquery;
+				let layer = layui.layer;
+
+				// 职位分类
+				$.ajax({
+					url: "http://127.0.0.1:8080/ssm/config-major-kind/all",
+					type: "get",
+					success: res => {
+						// console.log(res)
+						$("#majorKindId option:gt(0)").remove()
+
+						$.each(res.data, function (index, item) {
+							$("#majorKindId").append(new Option(item.majorKindName, item.majorKindId))
+							layui.form.render('select')
+						})
+					}
+				})
+
+				// 职业名称
+				$.ajax({
+					url: "http://127.0.0.1:8080/ssm/config-major/all",
+					type: "get",
+					success: res => {
+						// console.log(res)
+						$("#majorId option:gt(0)").remove()
+
+						$.each(res.data, function (index, item) {
+							$("#majorId").append(new Option(item.majorName, item.makId))
+							layui.form.render('select')
+						})
+					}
+				})
+
+			})
+
 		</script>	
 	</body>
 </html>
