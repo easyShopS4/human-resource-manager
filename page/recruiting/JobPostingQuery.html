@@ -38,66 +38,93 @@
 			</span>
 		</div>
 		<!-- 头部导航 结束 -->
-		<table class="layui-table" lay-skin="line">
-		    <colgroup>
-		      <col width="150">
-		      <col width="200">
-		      <col>
-		    </colgroup>
-		    <thead>
-		      <tr>
-		        <th>职位名称</th>
-		        <th>公司名称</th>
-		        <th>招聘人数</th>
-				<th>发布时间</th>
-				<th>截止时间</th>
-				<th>操作</th>
-		      </tr> 
-		    </thead>
-		    <tbody>
-				<tr>
-					<td>区域经理</td>
-					<td>软件公司</td>
-					<td>3</td>
-					<td>2012-08-01 12:00:00</td>
-					<td>2012-12-30 12:00:00</td>
-					<td>
-						<button type="button" onclick="xadmin.open('职位发布查询--详细','JobPostingChange-Applyfor .html',1000,650)" class="layui-btn layui-btn-sm layui-btn-normal">申请职位</button>
-					</td>
-				</tr>
-				
-				<tr>
-					<td>总经理</td>
-					<td>生物科技有限公司</td>
-					<td>2</td>
-					<td>2012-08-02 12:00:00</td>
-					<td>2012-11-15 12:00:00</td>
-					<td>
-						<button type="button" onclick="xadmin.open('职位发布查询--详细','JobPostingChange-Applyfor .html',1000,650)" class="layui-btn layui-btn-sm layui-btn-normal">申请职位</button>
-					</td>
-				</tr>	
-		    </tbody>
-			
-			<tfoot>
-				<tr align="center">
-					<td colspan="6">
-						<div id="page"></div>
-						 
-						<script src="/static/build/layui.js"></script>
-						<script>
-						layui.use('laypage', function(){
-						  var laypage = layui.laypage;
-						  
-						  //执行一个laypage实例
-						  laypage.render({
-						    elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
-						    ,count: 50 //数据总数，从服务端得到
-						  });
+
+		<!-- 数据表格 -->
+		<table class="layui-hide" id="jobTable" lay-filter="jobTable"></table>
+
+		<!-- job -->
+		<div style="display: none;" id="jobToolBar">
+			<button type="button" class="layui-btn layui-btn-sm" lay-event="add">哈哈哈</button>
+		</div>
+
+		<div  id="jobBar" style="display: none;">
+			<a class="layui-btn layui-btn-sm layui-btn-normal" lay-event="edit">申请职位</a>
+		</div>
+
+		<!-- data table end~ -->
+
+		<script>
+			let tableIns;
+			layui.use([ 'jquery', 'layer', 'form', 'table'], function() {
+				let $ = layui.jquery;
+				let layer = layui.layer;
+				let form = layui.form;
+				let table = layui.table;
+				// let dtree = layui.dtree;
+				//渲染数据表格
+				tableIns = table.render({
+					elem: '#jobTable'   //渲染的目标对象
+					, url: 'http://127.0.0.1:8080/ssm/engage-major-release/paging' //数据接口
+					, title: '招聘表'//数据导出来的标题
+					, toolbar: "#jobToolBar"   //表格的工具条
+					, height: 'full-230'
+					, cellMinWidth: 300 //设置列的最小默认宽度
+					, page: 1  //是否启用分页, limits: [10, 20, 30]
+					, limits: [10, 20, 30]
+					, limit: 1 //默认采用2
+					, cols: [[   //列表数据
+						{field: 'mreId', title: 'ID', align: 'center', width: '50'}
+						, {field: 'majorKindName', title: '职位分类', align: 'center'}
+						, {field: 'majorName', title: '职位名称', align: 'center'}
+						, {field: 'secondKindName', title: '公司名称', align: 'center', templet:function(d){
+								return d.secondKindName==''?'暂无': d.secondKindName;
+						}}
+						, {field: 'humanAmount', title: '招聘人数', align: 'center'}
+						, {field: 'registerTime', title: '发布时间', align: 'center'}
+						, {field: 'deadline', title: '过期时间', align: 'center'}
+						, {fixed: 'right', title: '操作', toolbar: '#jobBar', align: 'center', width: '260'}
+					]]
+				})
+
+
+				//监听行工具事件
+				table.on('tool(jobTable)', function(obj){
+					let data = obj.data; //获得当前行数据
+					let layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+					if(layEvent === 'del'){ //删除
+						layer.confirm('真的删除这条招聘信息吗', function(index){
+							let mreId = data.mreId;
+							//向服务端发送删除指令
+							$.post("http://127.0.0.1:8080/ssm/engage-major-release/del/" + mreId, {_method: "delete"},function(res){
+								if (res.code === 200) {
+									layer.msg(res.message);
+									//刷新数据 表格
+									tableIns.reload();
+								} else {
+									layer.msg(res.message)
+								}
+							})
 						});
-						</script>
-					</td>
-				</tr>
-			</tfoot>
-		</table>		
+					} else if(layEvent === 'edit'){ //编辑
+
+						let id = data.mreId;
+						// 打开编辑页面~
+						xadmin.open('职位更改','JobPostingChange-Applyfor.html?id=' + id,1000,650);
+
+					}
+				});
+
+				table.on('tool(jobTableBar)', function (obj) {
+					let layEvent = obj.event;
+
+					if (layEvent === 'add') {
+						layer.msg("公司需要小可爱呢")
+					}
+				})
+
+			});
+
+		</script>
+
 	</body>
 </html>

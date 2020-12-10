@@ -10,6 +10,20 @@ layui.use(['layer', 'jquery', 'form'], function () {
 
     let jwt_token = localStorage.getItem("jwtToken");
 
+    function getRootPath(){
+        let currentPagePath=location.href;
+        let pathName = window.document.location.pathname;
+        let pos = currentPagePath.indexOf(pathName);
+        let localhostPath = currentPagePath.substring(0,pos);
+        let projectName = pathName.substring(0,pathName.substr(1).indexOf("/")+1); // projectName
+
+        // return localhostPath ;  http://localhost:63342
+        // return projectName;  /human-resource-manager
+        return localhostPath + projectName;
+    }
+
+    getRootPath()
+
     $.ajax({
         url: "http://127.0.0.1:8080/ssm/users/check",
         type: "post",
@@ -21,20 +35,21 @@ layui.use(['layer', 'jquery', 'form'], function () {
             xhr.setRequestHeader("abc", "abc")
         },
         success: res => {
-            console.log('msg---->', res)
+            console.log('res', res)
 
-            // 更新token
-            localStorage.removeItem("jwtToken")
-            localStorage.setItem("jwtToken", res)
+            if (res.code ===  200) {
+                // 更新token
+                localStorage.removeItem("jwtToken")
+                localStorage.setItem("jwtToken", res.data)
+            } else if (res.code === 403) {
+                layer.msg("您无权限，请登录")
+                location.href = getRootPath() + "/login.html";
+            }
 
         },
         error: e => {
             // 进入error回调
             console.log('err', e)
-            if (e.responseText == "bad") {
-                layer.msg("您无权限，请登录")
-                location.href = "../login.html";
-            }
         }
     })
 
