@@ -193,6 +193,7 @@
 			tableIns = table.render({
 				elem: '#resumeTable'   //渲染的目标对象
 				, url: 'http://127.0.0.1:8080/ssm/engage-resume/paging' //数据接口
+				, where: {'checkStatus': 0}
 				, title: '招聘表'//数据导出来的标题
 				, toolbar: "#resumeToolBar"   //表格的工具条
 				, height: 'full-230'
