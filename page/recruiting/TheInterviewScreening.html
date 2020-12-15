@@ -32,74 +32,92 @@
 		    <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
 		</div>
 		<!-- 头部导航 结束 -->
-		<!-- 表格元素开始 -->
-		<table class="layui-table" lay-skin="line" style="margin-top: 50px;">
-		    <colgroup>
-		      <col width="150">
-		      <col width="200">
-		      <col>
-		    </colgroup>
-		    <thead>
-		      <tr>
-		        <th>档案编号</th>
-		        <th>姓名</th>
-				<th>职位分类</th>
-				<th>职位名称</th>
-				<th>面试次数</th>	
-				<th>面试时间</th>
-				<th>综合素质</th>
-				<th>操作</th>
-		      </tr> 
-		    </thead>
-		    <tbody>
-				<tr>
-					<td>543</td>
-					<td>张飒</td>
-					<td>软件开发</td>
-					<td>程序员</td>
-					<td>1</td>
-					<td>2012-11-25 00:00:00.0</td>
-					<td><span class="layui-badge">A</span></td>
-					<td>
-						<button type="button" onclick="xadmin.open('面试筛选编辑','TheInterviewScreening-Update.html',1580,750)" class="layui-btn layui-btn-sm layui-btn-warm">筛选</button>
-					</td>
-				</tr>
-				
-				<tr>
-					<td>544</td>
-					<td>三</td>
-					<td>软件公司</td>
-					<td>项目经理</td>
-					<td>2</td>
-					<td>2012-08-01 00:00:00.0</td>
-					<td><span class="layui-badge layui-bg-green">B</span></td>
-					<td>
-						<button type="button" onclick="xadmin.open('面试筛选编辑','TheInterviewScreening-Update.html',1580,750)" class="layui-btn layui-btn-sm layui-btn-warm">筛选</button>
-					</td>
-				</tr>
-		    </tbody>
-			
-			<tfoot>
-				<tr align="center">
-					<td colspan="8">
-						<div id="page"></div>
-						 
-						<script src="/static/build/layui.js"></script>
-						<script>
-						layui.use('laypage', function(){
-						  var laypage = layui.laypage;
-						  
-						  //执行一个laypage实例
-						  laypage.render({
-						    elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
-						    ,count: 50 //数据总数，从服务端得到
-						  });
-						});
-						</script>
-					</td>
-				</tr>
-			</tfoot>
-		</table>
-		<!-- 表格元素结束 -->
+
+		<!-- 数据表格 -->
+		<table class="layui-hide" id="interviewTable" lay-filter="interviewTable"></table>
+
+		<!-- job -->
+		<div style="display: none;" id="interviewToolBar">
+			<button type="button" class="layui-btn layui-btn-sm" lay-event="add">增加</button>
+		</div>
+
+		<div  id="interviewBar" style="display: none;">
+			<a class="layui-btn layui-btn-sm layui-btn-warm" lay-event="sure">筛选</a>
+		</div>
+
+		<!-- data table end~ -->
+
+	<script>
+		layui.use(['form', 'jquery'], function(){
+			let form = layui.form;
+			let $ = layui.jquery;
+
+			//监听提交
+			form.on('submit(formDemo)', function(data){
+				layer.msg(JSON.stringify(data.field));
+
+				return false;
+			});
+		});
+
+
+
+		let tableIns;
+		layui.use([ 'jquery', 'layer', 'form', 'table'], function() {
+			let $ = layui.jquery;
+			let layer = layui.layer;
+			let form = layui.form;
+			let table = layui.table;
+			// let dtree = layui.dtree;
+			//渲染数据表格
+			tableIns = table.render({
+				elem: '#interviewTable'   //渲染的目标对象
+				, url: 'http://127.0.0.1:8080/ssm/engage-interview/paging' //数据接口
+				, where: {'checkStatus': 0}  // 简历还未被最后筛选..
+				, title: '招聘表'//数据导出来的标题
+				, toolbar: "#interviewToolBar"   //表格的工具条
+				, height: 'full-230'
+				, cellMinWidth: 300 //设置列的最小默认宽度
+				, page: 1  //是否启用分页, limits: [10, 20, 30]
+				, limits: [10, 20, 30]
+				, limit: 1 //默认采用2
+				, cols: [[   //列表数据
+					{field: 'einId', title: '档案编号', align: 'center', width: '50'}
+					, {field: 'humanName', title: '姓名', align: 'center'}
+					, {field: 'humanMajorKindName', title: '职位分类', align: 'center'}
+					, {field: 'humanMajorName', title: '职位名称', align: 'center'}
+					, {field: 'interviewAmount', title: '面试次数', align: 'center'}
+					, {field: 'registerTime', title: '面试时间', align: 'center'}
+					, {field: 'multiQualityDegree', title: '综合素质', align: 'center', templet: function (d) {
+
+						let degree = d.multiQualityDegree;
+
+						return degree == 'A' ? "<span class='layui-badge'>" + degree +
+								"</span>" : "<span class='layui-badge layui-bg-green'>" + degree + "</span>";
+					}}
+					, {fixed: 'right', title: '操作', toolbar: '#interviewBar', align: 'center', width: '260'}
+				]]
+			})
+
+
+			//监听行工具事件
+			table.on('tool(interviewTable)', function(obj){
+				let data = obj.data; //获得当前行数据
+				let layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+				if(layEvent === 'sure'){ //编辑
+
+					let id = data.einId;
+					// alert(id)
+					// 面试再次筛选
+					xadmin.open('简历筛选复核','TheInterviewScreening-Update.html?id=' + id, 1580,750)
+
+				}
+			});
+
+		});
+
+
+	</script>
+
 	</body>
 </html>
