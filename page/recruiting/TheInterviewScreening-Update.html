@@ -557,11 +557,18 @@
 				  //监听提交
 				  form.on('submit(formDemo)', function(data){
 					// layer.msg(JSON.stringify(data.field));
+					// console.log(JSON.stringify(data.field))
+
+					let checkStatus = data.field.checkStatus;
+					let pkId = data.field.einId;
 
 					$.ajax({
-						url: 'http://127.0.0.1:8080/ssm/engage-interview',
+						url: 'http://127.0.0.1:8080/ssm/engage-interview/upd?checkStatus=' + checkStatus + "&einId=" + pkId,
 						type: 'post',
-						data: JSON.stringify(data.field),
+						dataType: 'json',
+						beforeSend: function(xhr) {
+							xhr.setRequestHeader('jwtToken', localStorage.getItem('jwtToken'))
+						},
 						success: res => {
 							if (res.code === 200) {
 								layui.layer.msg('操作成功')
@@ -619,6 +626,8 @@
 
 							$("#register").val(r.register)
 							$("#registerTime").val(r.registerTime)
+
+							$("#einId").val(r.einId)
 
 							form.render('select')
 
