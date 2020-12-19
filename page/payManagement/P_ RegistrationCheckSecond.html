@@ -16,8 +16,47 @@
 			<script src="../../lib/layui/layui.js" charset="utf-8"></script>
 			<script type="text/javascript" src="../../js/xadmin.js"></script>
 			<!-- 导航元素依赖 结束 -->
-			
-		</head>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<!-- 导航元素依赖 结束 -->
+		<script type="text/javascript">
+			function fuhe(a){
+				location.href="P_ RegistrationCheckSecond.html?sgrId="+a;
+
+			}
+			$(function(){
+				let url=window.location.search;
+				alert(url)
+				$.post("http://127.0.0.1:8080/ssm/salary-grant/P_RegistrationCheckSecond"+url,{},function (data) {
+					//alert(data.sgrId);
+					let tr="";
+
+						tr+="<tr>"+
+								"<td>"+data.sgrId+
+								"<input type='hidden' name='firstKindId' value='"+data.firstKindId+"'>" +
+								"<input type='hidden' name='sgrId' value='"+data.sgrId+"'>" +
+								"</td>"+
+								"<td>"+data.salaryStandardId+"</td>"+
+								"<td>"+data.register+"</td>"+
+								"<td>"+data.mission+"</td>"+
+								"<td>"+data.travel+"</td>"+
+								"<td>"+data.housing+"</td>"+
+								"<td>"+data.base+"</td>"+
+								"<td>"+data.year+"</td>"+
+								"<td>"+data.missed+"</td>"+
+								"<td><input type='text' style=\"width: 40%;\" name='bounsSum' value='"+(data.bounsSum==null?0:data.bounsSum)+"'/></td>"+
+								"<td><input type='text' style=\"width: 40%;\" name='saleSum' value='"+(data.saleSum==null?0:data.saleSum)+"'/></td>"+
+								"<td><input type='text' style=\"width: 40%;\" name='deductSum' value='"+(data.deductSum==null?0:data.deductSum)+"'/></td>"+
+								"<td>"+data.salaryPaidSum+"<input type='hidden' name='salaryPaidSum' value='"+data.salaryPaidSum+"'></td>"+
+								"</tr>"
+
+					$("#tab").append(tr);
+
+				});
+			});
+		</script>
+
+	</head>
+
 		<body>
 			<div class="x-nav">
 			  <span class="layui-breadcrumb">
@@ -53,8 +92,8 @@
 				 <label>2020-11-30 12:20:40</label> 
 			  </span>
 			</div>	
-			<form class="layui-form" action="">
-				<table class="layui-table" lay-skin="line" style="width: 50%;">
+			<form class="layui-form" action="" id="frm">
+				<table class="layui-table" lay-skin="line" style="width: 50%;" id="tab">
 				    <colgroup>
 						<col width="150">
 						<col width="200">
@@ -77,6 +116,7 @@
 						</tr> 
 				    </thead>
 					<tbody>
+					<!--
 						<tr>
 						<td>1</td>
 						<td>bt202011190644250035</td>
@@ -97,7 +137,7 @@
 							<input type="text" style="width: 60%;"/>
 						</td>
 						<td>135827.0</td>
-						</tr>
+						</tr>-->
 						
 					</tbody>
 					<tfoot>
@@ -105,7 +145,7 @@
 										<td colspan="12">
 											<div class="layui-form-item" >
 											  <div class="layui-input-block">
-												<button class="layui-btn" lay-submit lay-filter="formDemo">复核通过</button>
+												<input  type="button" class="layui-btn" lay-submit lay-filter="formDemo" id="fuhe" value="复核通过">
 												<button class="layui-btn">返回</button>
 											  </div>
 											</div>
@@ -115,4 +155,18 @@
 				</table>
 			</form>
 	</body>
+<script>
+		$(function () {
+			$("#fuhe").click(function () {
+				let formData=$("#frm").serialize();
+				alert(formData)
+				$.post("http://127.0.0.1:8080/ssm/salary-grant/updates",formData,function (data) {
+
+				})
+
+			})
+
+		});
+
+</script>
 </html>

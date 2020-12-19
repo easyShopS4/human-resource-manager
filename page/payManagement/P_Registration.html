@@ -28,7 +28,7 @@
 		  <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
 		    <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
 		</div>	
-		<form class="layui-form" action="P_RegistrationReview.html">
+		<form class="layui-form" >
 			<table class="layui-table" lay-skin="row">
 				<tbody>
 					<tr>
@@ -36,7 +36,7 @@
 							<div class="layui-form-item">
 							    <label class="layui-form-label">薪酬发放方式</label>
 							    <div class="layui-input-block">
-							      <select>
+							      <select id="jg">
 									<option value="">请选择</option>
 							        <option value="0">一级机构发放方式</option>
 							        <option value="1">二级机构发放方式</option>
@@ -50,7 +50,7 @@
 									<td colspan="5">
 										<div class="layui-form-item">
 										  <div class="layui-input-block">
-											<button class="layui-btn" lay-submit lay-filter="formDemo">确认</button>
+											<input type="button" onclick="affirm()" class="layui-btn"  value="确认">
 										  </div>
 										</div>
 									</td>
@@ -61,7 +61,29 @@
 		</form>
 		
 	</body>
+	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 	<script>
+
+	function affirm(){
+		let jg=$("#jg option:selected").val();
+
+		if(jg==""){
+			return;
+		}
+
+			location.href="P_RegistrationReview.html?jg="+jg;
+	}
+
+
+
+
+
+
+
+
+
+
+
 		/* 
 			下拉框依赖
 		 */

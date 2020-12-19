@@ -84,11 +84,11 @@
 						
 						<td>
 							<div class="layui-form-item">
-								<label class="layui-form-label">复核时间</label>
+								<label class="layui-form-label">变更时间</label>
 								<div class="layui-input-block">
 									<input type="hidden" id="ssdId"  name="ssdId"  type="text" > <!--主键Id-->
-									<input type="hidden"  name="checkStatus"  type="text" value="2"> <!--状态-->
-								      <input type="text" id="checkTime" name="checkTime" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" >
+									<input type="hidden"  name="checkStatus"  type="text" value="3"> <!--状态-->
+								      <input type="text" id="changeTime" name="changeTime" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" >
 								</div>
 							</div>
 						</td> 
@@ -222,24 +222,13 @@
 								</div>
 							</td>
 						</tr>
-						<tr>
-							<td colspan="3">
-								<div class="layui-form-item">
-
-									<label class="layui-form-label">复核薪酬总额</label>
-									<div class="layui-input-block">
-										<input type="text" id="SUM" name="salarysum1" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="0.0">
-									</div>
-								</div>
-							</td>
-						</tr>
 					</div>
 
 					<tr align="center">
 									<td colspan="5">
 										<div class="layui-form-item">
 										  <div class="layui-input-block">
-											<input type="button" class="layui-btn" onclick="pass()" lay-submit lay-filter="formDemo" value="复核通过">
+											<input type="button" class="layui-btn" onclick="pass()" lay-submit lay-filter="formDemo" value="变更">
 											<button type="button" class="layui-btn">返回</button>
 										  </div>
 										</div>
@@ -302,28 +291,26 @@
 
 
 		});
-		//复核通过
+		//变更通过
 		function pass(){
 			let frm_data = $("#frm").serialize();
 
 			let gz=$("#salarysum").val()
 			let fhgz=$("#SUM").val()
-			if(gz == fhgz){
+
 				$.post("http://127.0.0.1:8080/ssm/salary-standard/E_RegistrationReviewUpdate",frm_data,function (data) {
-					alert("复核通过");
+					alert("变更通过");
 				location.href="E_RegistrationReview.html";
 
 				});
-			}else{
-				alert('工资不符合:薪酬总额'+gz+"  复核薪酬总额"+fhgz);
-			}
+
 
 		}
 		//时间格式
 		layui.use('laydate', function(){
 			var laydate = layui.laydate;
 			laydate.render({
-				elem: '#checkTime',
+				elem: '#changeTime',
 
 			});
 		});

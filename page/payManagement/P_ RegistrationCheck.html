@@ -15,11 +15,31 @@
 		<link rel="stylesheet" href="../../css/xadmin.css">
 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
 		<script type="text/javascript" src="../../js/xadmin.js"></script>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<!-- 导航元素依赖 结束 -->
 		<script type="text/javascript">
-		    function fuhe(){
-				location.href="P_ RegistrationCheckSecond.html";
-			}	
+		    function fuhe(a){
+				location.href="P_ RegistrationCheckSecond.html?sgrId="+a;
+
+			}
+			$(function(){
+				$.post("http://127.0.0.1:8080/ssm/salary-grant/P_RegistrationCheck",{},function (data) {
+					//alert(data[0].salaryStandardId+"-"+data[0].firstKindId+"-"+data[0].secondKindName+"-"+data[0].salaryStandardSum);
+					let tr="";
+					for (let i = 0; i <data.length ; i++) {
+						tr+="<tr>"+
+								"<td>"+data[i].salaryStandardId+"</td>"+
+								"<td>"+data[i].firstKindName+"</td>"+
+								"<td>"+data[i].secondKindName+"</td>"+
+								"<td>"+data[i].thirdKindName+"</td>"+
+								"<td>"+data[i].humanAmount+"</td>"+
+								"<td>"+data[i].salaryStandardSum+"</td>"+
+								"<td><input type='button' class=\"layui-btn layui-btn-warm\" onclick='fuhe("+data[i].sgrId+")' value='复核'></td>"+
+							"</tr>"
+					}
+					$("#tab").append(tr);
+				});
+			});
 		</script>
 	</head>
 	<body>
@@ -33,7 +53,7 @@
 		  <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
 		    <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
 		</div>
-		<table class="layui-table" lay-skin="line">
+		<table class="layui-table" lay-skin="line" id="tab">
 		    <colgroup>
 				<col width="150">
 				<col width="200">

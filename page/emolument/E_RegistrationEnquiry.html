@@ -13,11 +13,72 @@
 		<!-- 导航元素依赖 开始 -->	
 		<link rel="stylesheet" href="../../css/font.css">
 		<link rel="stylesheet" href="../../css/xadmin.css">
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
 		<script type="text/javascript" src="../../js/xadmin.js"></script>
 		<!-- 导航元素依赖 结束 -->
 		
 	</head>
+
+	<script>
+
+		//接收一个值
+		// function oneValues(){
+		// 	var result;
+		// 	var url=window.location.search; //获取url中"?"符后的字串
+		// 	alert(url)
+		// 	if(url.indexOf("?")!=-1){
+		// 		result = url.substr(url.indexOf("=")+1);
+		// 	}
+		// 	return result;
+		// }
+
+
+
+		/*$(function () {
+
+			//接收多值
+		let url=window.location.search;
+		/!*alert(url)
+		let strs=[];
+		if(url.indexOf("?")!=-1){
+			let str = url.substr(1);
+			strs = str.split("&");
+
+			let key=new Array(strs.length);
+			let value=new Array(strs.length);
+			for(i=0;i<strs.length;i++){
+				key[i]=strs[i].split("=")[0]
+				value[i]=unescape(strs[i].split("=")[1]);
+
+				}
+						alert(strs);
+
+		}*!/
+
+
+			$.post("http://127.0.0.1:8080/ssm/salary-standard/SalaryStandardList", url,function(data){
+				//alert(data);
+				let tr="";
+				for (let i=0;i<data.length;i++){
+					//alert(data[i].standardId+"-"+data[i].standardName+"-"+data[i].designer+"-"+data[i].registerTime+"-"+data[i].salarySum)
+					tr+="<tr>"+
+							"<td>"+ data[i].standardId +"</td>"+
+							"<td>"+ data[i].standardName +"</td>"+
+							"<td>"+ data[i].designer +"</td>"+
+							"<td>"+ data[i].registerTime +"</td>"+
+							"<td>"+ data[i].salarySum +"</td>"+
+							"</tr>"
+				}
+				$("#table").append(tr);
+			},'json');
+
+
+
+		});*/
+
+	</script>
+
 	<body>
 		<!-- 头部导航 开始 -->
 		<div class="x-nav">
@@ -41,12 +102,12 @@
 		<!-- 头部导航 结束 -->
 		
 		<!-- 表格开始 -->
-		<table class="layui-table" lay-skin="line">
+		<table class="layui-table" lay-skin="line" id="jobTable" lay-filter="jobTable">
 		    <colgroup>
 				<col width="150">
 				<col width="200">
 		    </colgroup>
-		    <thead>
+		<!--    <thead>
 				<tr>
 					<th>薪酬标准编号</th>
 					<th>薪酬标准名称</th>
@@ -63,29 +124,71 @@
 					<td>2012-11-19 18:17:45.0</td>
 					<td>0.0</td>
 				</tr>
-		    </tbody>
-			<tfoot>
+		    </tbody>-->
+			<!--<tfoot>
 				<tr align="center">
 					<td colspan="7">
 						<div id="test1"></div>
 						 
-						<script src="/static/build/layui.js"></script>
+						&lt;!&ndash;<script src="/static/build/layui.js"></script>
+
 						<script>
 						layui.use('laypage', function(){
 						  var laypage = layui.laypage;
-						  
+
 						  //执行一个laypage实例
 						  laypage.render({
 						    elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
 						    ,count: 50 //数据总数，从服务端得到
 						  });
 						});
-						</script>
+						</script>&ndash;&gt;
 					</td>
 				</tr>
-			</tfoot>
+			</tfoot>-->
 		</table>
 		
 		<!-- 表格结束 -->
+
+		<script>
+			let url=window.location.search;
+			alert(url)
+			let tableIns;
+			layui.use([ 'jquery', 'layer', 'form', 'table'], function() {
+				let $ = layui.jquery;
+				let layer = layui.layer;
+				let form = layui.form;
+				let table = layui.table;
+				// let dtree = layui.dtree;
+				//渲染数据表格
+				tableIns = table.render({
+					elem: '#jobTable'   //渲染的目标对象
+					, url: 'http://127.0.0.1:8080/ssm/salary-standard/SalaryStandardList'+url //数据接口
+					, title: '酬薪表'//数据导出来的标题
+					, toolbar: "#jobToolBar"   //表格的工具条
+					, height: 'full-230'
+					, cellMinWidth: 300 //设置列的最小默认宽度
+					, page: 1  //是否启用分页, limits: [10, 20, 30]
+					, limits: [10, 20, 30]
+					, limit: 5 //默认采用2
+					, cols: [[   //列表数据
+						//"standard_id" : 薪酬标准单编号
+						{field: 'standardId', title: '薪酬标准单编号', align: 'center' },
+						// 	"standard_name" : 薪酬标准单名称
+						{field: 'standardName', title: '薪酬标准单名称', align: 'center' },
+						//	"designer" : 制定者名字
+						{field: 'designer', title: '制定者名字', align: 'center'},
+						//"register_time" : 登记时间
+						{field: 'registerTime', title: '登记时间', align: 'center'},
+						//"salary_sum" : 薪酬总额
+						{field: 'salarySum', title: '薪酬总额', align: 'center'},
+
+					]]
+				})
+
+
+			});
+
+		</script>
 	</body>
 </html>

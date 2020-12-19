@@ -40,56 +40,64 @@
 		<!-- 头部导航 结束 -->
 		
 		<!-- 表格开始 -->
-		<table class="layui-table" lay-skin="line">
-		    <colgroup>
-				<col width="150">
-				<col width="200">
-		    </colgroup>
-		    <thead>
-				<tr>
-					<th>薪酬标准编号</th>
-					<th>薪酬标准名称</th>
-					<th>制定人</th>
-					<th>登记时间</th>
-					<th>薪酬总额</th>
-					<th>复核</th>
-				</tr> 
-		    </thead>
-		    <tbody>
-				<tr>
-					<td>1353320262202</td>
-					<td>的萨法大赛</td>
-					<td>杨阳</td>
-					<td>2012-11-19 18:17:45.0</td>
-					<td>0.0</td>
-					<td><button type="button" class="layui-btn layui-btn-warm" onclick="Review();">变更</button>
-				</tr>
-		    </tbody>
-			<tfoot>
-				<tr align="center">
-					<td colspan="7">
-						<div id="test1"></div>
-						 
-						<script src="/static/build/layui.js"></script>
-						<script>
-						layui.use('laypage', function(){
-						  var laypage = layui.laypage;
-						  
-						  //执行一个laypage实例
-						  laypage.render({
-						    elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
-						    ,count: 50 //数据总数，从服务端得到
-						  });
-						});
-						function Review(){
-							location.href="E_Registration_Second.html";
-						}
-						</script>
-					</td>
-				</tr>
-			</tfoot>
-		</table>
+		<table class="layui-hide" id="jobTable" lay-filter="jobTable"></table>
+		<div  id="jobBar" style="display: none;">
+			<a class="layui-btn layui-btn-xs" lay-event="edit">变更</a>
+		</div>
 		
 		<!-- 表格结束 -->
+		<script>
+			let url=window.location.search;
+			let tableIns;
+			layui.use([ 'jquery', 'layer', 'form', 'table'], function() {
+				let $ = layui.jquery;
+				let layer = layui.layer;
+				let form = layui.form;
+				let table = layui.table;
+				// let dtree = layui.dtree;
+				//渲染数据表格
+				tableIns = table.render({
+					elem: '#jobTable'   //渲染的目标对象
+					, url: 'http://127.0.0.1:8080/ssm/salary-standard/SalaryStandardListBG'+url //数据接口
+					, title: '酬薪表'//数据导出来的标题
+					, toolbar: "#jobToolBar"   //表格的工具条
+					, height: 'full-230'
+					, cellMinWidth: 300 //设置列的最小默认宽度
+					, page: 1  //是否启用分页, limits: [10, 20, 30]
+					, limits: [10, 20, 30]
+					, limit: 5 //默认采用2
+					, cols: [[   //列表数据
+						//"standard_id" : 薪酬标准单编号
+						{field: 'standardId', title: '薪酬标准单编号', align: 'center' },
+						// 	"standard_name" : 薪酬标准单名称
+						{field: 'standardName', title: '薪酬标准单名称', align: 'center' },
+						//	"designer" : 制定者名字
+						{field: 'designer', title: '制定者名字', align: 'center'},
+						//"register_time" : 登记时间
+						{field: 'registerTime', title: '登记时间', align: 'center'},
+						//"salary_sum" : 薪酬总额
+						{field: 'salarySum', title: '薪酬总额', align: 'center'},
+						{fixed: 'right', title: '操作', toolbar: '#jobBar', align: 'center'}
+					]]
+				})
+
+				//监听行工具事件
+				table.on('tool(jobTable)', function(obj){
+					let data = obj.data; //获得当前行数据
+					let layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+					if(layEvent === 'edit'){ //复核
+
+						let id = data.ssdId;
+						// 打开编辑页面~
+						location.href="E_Registration_SecondBG.html?ssdId="+id;
+
+
+
+					}
+				});
+
+			});
+
+		</script>
 	</body>
 </html>

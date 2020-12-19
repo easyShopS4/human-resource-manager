@@ -15,11 +15,70 @@
 			<link rel="stylesheet" href="../../css/xadmin.css">
 			<script src="../../lib/layui/layui.js" charset="utf-8"></script>
 			<script type="text/javascript" src="../../js/xadmin.js"></script>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 			<!-- 导航元素依赖 结束 -->
 			<script type="text/javascript">
-				function deji(){
-					location.href="";
-				}
+				$(function () {
+
+					let url=window.location.search;
+					url=decodeURIComponent(url);
+					let strs=[];
+					let key = new Array(strs.length);
+					let value = new Array(strs.length);
+					if(url.indexOf("?")!=-1) {
+						let str = url.substr(1);
+
+						strs = str.split("&");
+
+						for (i = 0; i < strs.length; i++) {
+							key[i] = strs[i].split("=")[0]
+							value[i] = unescape(strs[i].split("=")[1]);
+						}
+					}
+
+					//alert(value[0]+"--"+value[1]+"--"+value[2]);
+
+					$.post("http://127.0.0.1:8080/ssm/salary-standard/P_RegistrationReviewSecond"+url,{},function (data) {
+						let tr="";
+						for(let i=0;i<data.length;i++){
+							//	alert(data[i].checkComment+"--"+data[i].checkStatus+"--"+data[i].salarySum+"--"+data[i].changeStatus)
+							tr+= "<tr>"+
+									//酬薪发放编号  薪酬发放编号主键id
+									"<td>"+data[i].ssdId+"<input type='hidden'  name='listsg["+i+"].salaryGrantId' value='"+data[i].ssdId+"'/></td>"+
+									//薪酬标准单编号 salary_standard_id
+									"<td>"+data[i].standardId+"<input type='hidden' name='listsg["+i+"].salaryStandardId' value='"+data[i].standardId+"'/></td>"+
+									//姓名(登记人)
+									"<td>"+data[i].register+"" +
+									"<input type='hidden' name='listsg["+i+"].register' value='"+data[i].register+"'/>" +
+									//登记时间
+									"<input type='hidden' name='listsg["+i+"].registerTime' value='"+data[i].registerTime+"'/>" +
+									//复核状态(1:未复核,2:已复核)
+									"<input type='hidden' name='listsg["+i+"].checkStatus' value='1'/>" +
+									//"first_kind_id" : 一级机构编号
+									"<input type='hidden' name='listsg["+i+"].firstKindId' value='"+value[0]+"'/>" +
+									//"first_kind_name" : 一级机构名称
+									"<input type='hidden' name='listsg["+i+"].firstKindName' value='"+value[1]+"'/>" +
+									//	"human_amount" : 总人数
+									"<input type='hidden' name='listsg["+i+"].humanAmount' value='"+value[2]+"'/>" +
+
+									"</td>"+
+
+									"<td>"+data[i].mission+"</td>"+
+									"<td>"+data[i].travel+"</td>"+
+									"<td>"+data[i].housing+"</td>"+
+									"<td>"+data[i].base+"</td>"+
+									"<td>"+data[i].year+"</td>"+
+									"<td>"+data[i].missed+"</td>"+
+									"<td><input type='text' style=\"width: 40%;\" name='listsg["+i+"].bounsSum'/></td>"+
+									"<td><input type='text' style=\"width: 40%;\" name='listsg["+i+"].saleSum' /></td>"+
+									"<td><input type='text' style=\"width: 40%;\" name='listsg["+i+"].deductSum' /></td>"+
+									"<td>"+data[i].salarySum+" <input type='hidden'  name='listsg["+i+"].salaryStandardSum' id='salaryStandardSum' value='"+data[i].salarySum+"'></td>"+
+									"</tr>";
+
+						}
+						$("#table tbody").append(tr);
+					});
+				});
 			</script>
 		</head>
 		<body>
@@ -57,8 +116,8 @@
 				 <label>2020-11-30 12:20:40</label> 
 			  </span>
 			</div>	
-			<form class="layui-form" action="">
-				<table class="layui-table" lay-size="sm" style="width: 100%;">
+			<form class="layui-form"  id="frm">
+				<table class="layui-table" lay-size="sm" style="width: 100%;" id="table">
 				    <colgroup>
 						<col width="150">
 						<col width="200">
@@ -109,7 +168,7 @@
 										<td colspan="12">
 											<div class="layui-form-item" >
 											  <div class="layui-input-block">
-												<button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
+												<input type="button" class="layui-btn" lay-submit lay-filter="formDemo" value="提交" id="but">
 												<button class="layui-btn">返回</button>
 											  </div>
 											</div>
@@ -117,6 +176,22 @@
 						</tr>
 					</tfoot>
 				</table>
+
 			</form>
 	</body>
+<script>
+				$(function () {
+					$("#but").click(function () {
+						let frm_data = $("#frm").serialize();
+						$.post("http://127.0.0.1:8080/ssm/salary-grant/salaryGrantAdd",frm_data,function (data) {
+							//alert(data)
+							window.history.back(-1)
+
+						});
+
+					})
+
+				});
+
+</script>
 </html>

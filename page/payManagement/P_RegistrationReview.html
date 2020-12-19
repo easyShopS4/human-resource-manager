@@ -15,10 +15,37 @@
 		<link rel="stylesheet" href="../../css/xadmin.css">
 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
 		<script type="text/javascript" src="../../js/xadmin.js"></script>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<!-- 导航元素依赖 结束 -->
 		<script type="text/javascript">
-			function deji(){
-				location.href="";
+			$(function () {
+				$.post("http://127.0.0.1:8080/ssm/salary-standard/P_RegistrationReview",{},function (data) {
+
+					let tr="";
+					for(let i=0;i<data.length;i++){
+		//	alert(data[i].checkComment+"--"+data[i].checkStatus+"--"+data[i].salarySum+"--"+data[i].changeStatus)
+					tr+= "<tr>"+
+						"<td>"+(i+1)+"</td>"+
+						"<td>"+data[i].checkComment+"<input type='hidden' id='checkComment' value='"+data[i].checkComment+"'></td>"+
+						"<td>"+data[i].checkStatus+"<input type='hidden' id='checkStatus' value='"+data[i].checkStatus+"'></td>"+
+						"<td>"+data[i].salarySum+"</td>"+
+						"<td>"+
+						"<button type='button' class='layui-btn layui-btn-warm' onclick='Review("+data[i].changeStatus+");'>登记</button>"+
+							"</td>"+
+
+					"</tr>";
+
+					}
+					$("#table tbody").append(tr);
+
+				},'json')
+
+			});
+
+			function Review(a){
+					let checkComment=$("#checkComment").val();//一级机构名称
+				let checkStatus=$("#checkStatus").val(); //总人数
+				location.href="P_RegistrationReviewSecond.html?id="+a+"&checkComment="+checkComment+"&checkStatus="+checkStatus;
 			}
 		</script>
 	</head>
@@ -46,7 +73,7 @@
 		  </span>
 		</div>	
 		<!-- 表格开始 -->
-		<table class="layui-table" lay-skin="line">
+		<table class="layui-table" lay-skin="line" id="table">
 		    <colgroup>
 				<col width="150">
 				<col width="200">
@@ -66,32 +93,10 @@
 					<td>I级结构</td>
 					<td>5</td>
 					<td>139823</td>
-					<td><button type="button" class="layui-btn layui-btn-warm" onclick="deji();">登记</button>
+					<td><button type="button" class="layui-btn layui-btn-warm" onclick="Review();">登记</button>
 				</tr>
 		    </tbody>
-			<tfoot>
-				<tr align="center">
-					<td colspan="7">
-						<div id="test1"></div>
-						 
-						<script src="/static/build/layui.js"></script>
-						<script>
-						layui.use('laypage', function(){
-						  var laypage = layui.laypage;
-						  
-						  //执行一个laypage实例
-						  laypage.render({
-						    elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
-						    ,count: 50 //数据总数，从服务端得到
-						  });
-						});
-						function Review(){
-							location.href="E_Registration_Second.html";
-						}
-						</script>
-					</td>
-				</tr>
-			</tfoot>
+
 		</table>
 		
 	</body>

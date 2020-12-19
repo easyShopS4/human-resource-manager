@@ -13,6 +13,7 @@
 		<!-- 导航元素依赖 开始 -->	
 		<link rel="stylesheet" href="../../css/font.css">
 		<link rel="stylesheet" href="../../css/xadmin.css">
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
 		<script type="text/javascript" src="../../js/xadmin.js"></script>
 		<!-- 导航元素依赖 结束 -->
@@ -29,7 +30,7 @@
 		  <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
 		    <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
 		</div>	
-		<form class="layui-form" action="E_RegistrationEnquiry.html">
+		<!--<form class="layui-form" action="E_RegistrationEnquiry.html" >-->
 			<table class="layui-table" lay-skin="row">
 				<tbody>
 					<tr>
@@ -37,7 +38,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">请输入薪酬标准编号</label>
 								<div class="layui-input-block">
-									      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入 " class="layui-input">
+									      <input type="text" name="title" id="standardId" lay-verify="title" autocomplete="off" placeholder="请输入 " class="layui-input">
 							    </div>
 							</div>
 						</td>
@@ -45,9 +46,9 @@
 					  <tr>
 					  	<td>
 					  		<div class="layui-form-item">
-					  			<label class="layui-form-label">请输入关键字</label>
+					  			<label class="layui-form-label">薪酬标准单名称</label>
 					  			<div class="layui-input-block">
-					  				      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入 " class="layui-input">  				
+					  				      <input type="text" id="standardName" lay-verify="title" autocomplete="off" placeholder="请输入 " class="layui-input">
 					  			</div>
 					  		</div>
 					  	</td>
@@ -56,13 +57,14 @@
 							<td>
 								<div class="layui-form-item">
 									<label class="layui-form-label">请输入建档时间</label>
-									 <div class="layui-input-inline" style="width: 200px;">
-									      <input type="text" name="price_min" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input">
-									    </div>
+									<div class="layui-input-inline" style="width: 200px;">
+										<input class="layui-input" name="registerTime1" id="test1" type="text" placeholder="yyyy-MM-dd">
+									</div>
 									    <div class="layui-form-mid">至</div>
-									    <div class="layui-input-inline" style="width: 200px;">
-									      <input type="text" name="price_max" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input">
-									    </div>
+									<div class="layui-input-inline" style="width: 200px;">
+										<input class="layui-input" name="registerTime2" id="test2" type="text" placeholder="yyyy-MM-dd">
+
+									</div>
 								</div>
 							</td>
 						  </tr>
@@ -70,7 +72,7 @@
 					  				<td colspan="5">
 					  					<div class="layui-form-item">
 					  					  <div class="layui-input-block">
-					  						<button class="layui-btn" lay-submit lay-filter="formDemo" >查询</button>
+											  <input type="button" class="layui-btn" id="reg-btn" lay-submit lay-filter="formDemo" value="查询">
 					  						<input type="reset" class="layui-btn" lay-submit lay-filter="formDemo"/>
 					  					  </div>
 					  					</div>
@@ -79,6 +81,46 @@
 					  		</tbody>
 							
 					  	</table>
-					  </form>
+					<!--  </form>-->
 	</body>
+
+
+
+
+	<script>
+		 $(function () {
+			 $("#reg-btn").on('click', function () {
+				let standardId=$("#standardId").val();
+				let standardName=$("#standardName").val();
+				let time1=$("#test1").val();
+				let time2=$("#test2").val();
+				//alert(standardId+"-"+standardName+"-"+test1+"-"+test2);
+				window.location = "E_RegistrationEnquiry.html?&standardId="+standardId+"&standardName="+standardName+"&registerTime="+time1+"&checkTime="+time2;
+
+			});
+
+		 });
+
+
+
+
+	//时间格式
+	layui.use('laydate', function(){
+		var laydate = layui.laydate;
+
+		laydate.render({
+			elem: '#test1',
+
+		});
+	});
+	//时间格式
+	layui.use('laydate', function(){
+		var laydate = layui.laydate;
+
+		laydate.render({
+			elem: '#test2',
+
+		});
+	});
+	</script>
 </html>

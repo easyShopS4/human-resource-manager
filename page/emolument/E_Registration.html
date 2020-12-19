@@ -13,6 +13,7 @@
 		<!-- 导航元素依赖 开始 -->	
 		<link rel="stylesheet" href="../../css/font.css">
 		<link rel="stylesheet" href="../../css/xadmin.css">
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
 		<script type="text/javascript" src="../../js/xadmin.js"></script>
 		<!-- 导航元素依赖 结束 -->
@@ -29,7 +30,7 @@
 		    <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
 		</div>	
 		
-		<form class="layui-form" action="">
+		<form class="layui-form" id="frm">
 			<table class="layui-table" lay-skin="row">
 				<tbody>
 					<tr>
@@ -37,7 +38,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">薪酬标准编号</label>
 								<div class="layui-input-block">
-								      <input type="text" name="title" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="1353752304959">
+								      <input type="text" name="standardId" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="1353752304959">
 							    </div>
 							</div>
 						</td>
@@ -46,7 +47,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">薪酬标准名称</label>
 								<div class="layui-input-block">
-								      <input type="text" name="title" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+								      <input type="text" name="standardName" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</td>  
@@ -56,51 +57,53 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">薪酬总额</label>
 								<div class="layui-input-block">
-								      <input type="text" name="title" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="0.0">
+								      <input type="text" id="SUM" name="salarySum" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="0.0" readonly>
 								</div>
 							</div>
-						</td> 
+						</td>
 					</tr>
 					<tr>
 						<td>
 							<div class="layui-form-item">
 								<label class="layui-form-label">制订人</label>
 								<div class="layui-input-block">
-								      <input type="text" name="title" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+								      <input type="text" name="designer" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
 							    </div>
 							</div>
 						</td>
-					  
+
 						<td>
 							<div class="layui-form-item">
 								<label class="layui-form-label">登记人</label>
 								<div class="layui-input-block">
-								      <input type="text" name="title" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="batter">
+								      <input type="text" name="register" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="batter">
 								</div>
 							</div>
-						</td>  
-						
-						
+						</td>
+
+
 						<td>
 							<div class="layui-form-item">
 								<label class="layui-form-label">登记时间</label>
 								<div class="layui-input-block">
-								      <input type="text" name="title" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" >
+									<input type="hidden"  name="changeStatus"  type="text" value="1">
+                                    <input type="hidden"  name="checkStatus"  type="text" value="1">
+									<input class="layui-input" name="registerTime" id="test1" type="text" placeholder="yyyy-MM-dd">
 								</div>
 							</div>
-						</td> 
+						</td>
 					</tr>
 					<tr>
 						<td colspan="3">
 							<div class="layui-form-item">
 								<label class="layui-form-label">备注</label>
 								<div class="layui-input-block">
-									<textarea name="" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
+									<textarea name="remark" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
 								</div>
 							</div>
 						</td>
 					</tr>
-					
+					<div>
 				    <tr>
 						    <th align="right">
 								<div class="layui-form-item">序号
@@ -108,7 +111,7 @@
 							</th>
 							<th >
 								<div class="layui-form-item">
-								薪酬标准名称
+								薪酬项目名称
 								</div>
 							</th>
 							<th >
@@ -123,29 +126,196 @@
 							    </div>	
 							</td>
 							<td >
-								<div class="layui-form-item">住房补贴
+								<div class="layui-form-item">出差补贴
 								</div>
 							</td>
 							<td >
 								<div class="layui-form-item">
 									
-										<input type="text" name="title" required  lay-verify="required" placeholder="0.0" autocomplete="off" class="layui-input" >
+										<input type="text" id="a" name="mission" required  lay-verify="required" placeholder="0.0" autocomplete="off" class="layui-input" onkeyup="addsum()">
 									
 								</div>
 							</td>
-					</tr> 
+					</tr>
+					<tr>
+						<td>
+							<div class="layui-form-item">64
+							</div>
+						</td>
+						<td >
+							<div class="layui-form-item">交通补贴
+							</div>
+						</td>
+						<td >
+							<div class="layui-form-item">
+
+								<input type="text" id="b" name="travel" required  lay-verify="required" placeholder="0.0" autocomplete="off" class="layui-input" onkeyup="addsum()">
+
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="layui-form-item">64
+							</div>
+						</td>
+						<td >
+							<div class="layui-form-item">住房补贴
+							</div>
+						</td>
+						<td >
+							<div class="layui-form-item">
+
+								<input type="text" id="c" name="housing" required  lay-verify="required" placeholder="0.0" autocomplete="off" class="layui-input" onkeyup="addsum()">
+
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="layui-form-item">64
+							</div>
+						</td>
+						<td >
+							<div class="layui-form-item">基本工资
+							</div>
+						</td>
+						<td >
+							<div class="layui-form-item">
+
+								<input type="text" id="d" name="base" required  lay-verify="required" placeholder="0.0" autocomplete="off" class="layui-input" onkeyup="addsum()">
+
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="layui-form-item">64
+							</div>
+						</td>
+						<td >
+							<div class="layui-form-item">年终奖
+							</div>
+						</td>
+						<td >
+							<div class="layui-form-item">
+								<input type="text" id="e" name="year" required  lay-verify="required" placeholder="0.0" autocomplete="off" class="layui-input" onkeyup="addsum()">
+
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="layui-form-item">64
+							</div>
+						</td>
+						<td >
+							<div class="layui-form-item">误餐补助
+							</div>
+						</td>
+						<td >
+							<div class="layui-form-item">
+
+								<input type="text" id="f" name="missed" required  lay-verify="required" placeholder="0.0" autocomplete="off" class="layui-input" onkeyup="addsum()">
+
+							</div>
+						</td>
+					</tr>
+					</div>
+
+
 					<tr align="center">
 									<td colspan="5">
 										<div class="layui-form-item">
 										  <div class="layui-input-block">
-											<button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
-											<input type="reset" class="layui-btn" lay-submit lay-filter="formDemo"/>
+											  <input type="button" class="layui-btn" id="reg-btn" lay-submit lay-filter="formDemo" value="提交">
+											  <input type="reset" class="layui-btn" lay-submit lay-filter="formDemo"/>
 										  </div>
 										</div>
 									</td>
 								</tr>
 							</tbody>
 						</table>
+
 					</form>
 	</body>
+	<script>
+
+
+		function addsum() {
+			//获取输入框的值（工资组成）
+			let a = document.getElementById("a").value; //获取出差补贴input框value值
+			a=parseFloat(a);if(isNaN(a)){a=0;}
+
+			let b = document.getElementById("b").value; //获取交通补贴input框value值
+			b=parseFloat(b);if(isNaN(b)){b=0;}
+
+			let c = document.getElementById("c").value; //获取租房补贴input框value值
+			c=parseFloat(c);if(isNaN(c)){c=0;}
+
+			let d = document.getElementById("d").value; //获取基本工资input框value值
+			d=parseFloat(d);if(isNaN(d)){d=0;}
+
+			let e = document.getElementById("e").value;	//获取年终将input框value值
+			e=parseFloat(e);if(isNaN(e)){e=0;}
+
+			let f = document.getElementById("f").value; //获取误餐补助input框value值
+			f=parseFloat(f);if(isNaN(f)){f=0;}
+		//合计工资
+
+			let sum = a+b+c+d+e+f; //合计工资组成的值
+			//alert(sum)
+
+		//只读框赋值（总工资）
+
+			document.getElementById("SUM").value = sum; //赋值给总工资的input框
+
+		}
+
+
+
+
+
+
+		$(function  () {
+
+			//添加salary_standard
+			$("#reg-btn").on('click', function () {
+				let frm_data = $("#frm").serialize();
+				//frm_data = decodeURIComponent(frm_data,true);
+				//frm_data = JSON.stringify(frm_data);
+
+				//console.log(frm_data);
+				alert(frm_data)
+				// $.ajax({
+				// 	url:"http://127.0.0.1:8080/ssm/salary-standard/SalaryStandardAdd",
+				// 	type:"POST",
+				// 	data:frm_data,
+				//
+				// 	contentType:"application/json",
+				// 	success: function (data) {
+				// 		console.log(data)
+				//     },
+				// 	error:  function (e) {
+				// 		console.log(e)
+				//     }
+				// });
+				$.post("http://127.0.0.1:8080/ssm/salary-standard/SalaryStandardAdd",frm_data,function(data){
+					alert("新增成功");
+				});
+			});
+
+
+		});
+
+
+		//时间格式
+		layui.use('laydate', function(){
+			var laydate = layui.laydate;
+			laydate.render({
+				elem: '#test1',
+
+			});
+		});
+	</script>
 </html>
