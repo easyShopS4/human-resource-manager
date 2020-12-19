@@ -30,60 +30,89 @@
 		    <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
 		</div>
 
-		<!-- 头部导航 结束 -->
-		<table class="layui-table" lay-skin="line">
-		    <colgroup>
-		      <col width="150">
-		      <col width="200">
-		      <col>
-		    </colgroup>
-		    <thead>
-		      <tr>
-		        <th>姓名</th>
-		        <th>性别</th>
-		        <th>年龄</th>
-				<th>职位类别</th>
-				<th>职位名称</th>
-				<th>毕业院校</th>
-				<th>学历专业</th>
-				<th>操作</th>
-		      </tr> 
-		    </thead>
-		    <tbody>
-				<tr>
-					<td>张飒</td>
-					<td>男</td>
-					<td>20</td>
-					<td>软件开发</td>
-					<td>程序员</td>
-					<td>长沙理工</td>
-					<td>计算机</td>
-					<td>
-						<button type="button" onclick="xadmin.open('录用审批','EmploymentApproval-Update.html',1580,750)" class="layui-btn layui-btn-sm layui-btn-normal">审批</button>
-					</td>
-				</tr>
-		    </tbody>
-			
-			<tfoot>
-				<tr align="center">
-					<td colspan="8">
-						<div id="page"></div>
-						 
-						<script src="/static/build/layui.js"></script>
-						<script>
-						layui.use('laypage', function(){
-						  var laypage = layui.laypage;
-						  
-						  //执行一个laypage实例
-						  laypage.render({
-						    elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
-						    ,count: 50 //数据总数，从服务端得到
-						  });
-						});
-						</script>
-					</td>
-				</tr>
-			</tfoot>
-		</table>		
+
+		<!-- 数据表格 -->
+		<table class="layui-hide" id="interviewTable" lay-filter="interviewTable"></table>
+
+
+		<div  id="interviewBar" style="display: none;">
+			<a class="layui-btn layui-btn-sm layui-btn-normal" lay-event="sure">审批</a>
+		</div>
+
+		<!-- data table end~ -->
+
+		<script>
+			layui.use(['form', 'jquery'], function(){
+				let form = layui.form;
+				let $ = layui.jquery;
+
+				//监听提交
+				form.on('submit(formDemo)', function(data){
+					layer.msg(JSON.stringify(data.field));
+
+					return false;
+				});
+			});
+
+
+
+			let tableIns;
+			layui.use([ 'jquery', 'layer', 'form', 'table'], function() {
+				let $ = layui.jquery;
+				let layer = layui.layer;
+				let form = layui.form;
+				let table = layui.table;
+				// let dtree = layui.dtree;
+				//渲染数据表格
+				tableIns = table.render({
+					elem: '#interviewTable'   //渲染的目标对象
+					, url: 'http://127.0.0.1:8080/ssm/engage-resume/paging/apply' //数据接口
+					, where: {'interviewCheckStatus': 1, 'interviewStatus': 1}  // 简历通过, 需要提出录用申请
+					, title: '招聘表'//数据导出来的标题
+					, toolbar: "#interviewToolBar"   //表格的工具条
+					, height: 'full-230'
+					, cellMinWidth: 300 //设置列的最小默认宽度
+					, page: 1  //是否启用分页, limits: [10, 20, 30]
+					, limits: [10, 20, 30]
+					, limit: 1 //默认采用2
+					, cols: [[   //列表数据
+						{field: 'einId', align: 'center', hide: true, templet: function(d){
+
+								// return d.einId;
+								return 1;
+
+							}
+						}
+						, {field: 'humanName', title: '姓名', align: 'center'}
+						, {field: 'humanSex', title: '性别', align: 'center'}
+						, {field: 'humanAge', title: '年龄', align: 'center'}
+						, {field: 'humanMajorKindName', title: '职位分类', align: 'center'}
+						, {field: 'humanMajorName', title: '职位名称', align: 'center'}
+						, {field: 'humanCollege', title: '毕业院校', align: 'center'}
+						, {field: 'humanEducatedMajor', title: '学历专业', align: 'center'}
+						, {fixed: 'right', title: '操作', toolbar: '#interviewBar', align: 'center', width: '260'}
+					]]
+				})
+
+
+				//监听行工具事件
+				table.on('tool(interviewTable)', function(obj){
+					let data = obj.data; //获得当前行数据
+					let layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+					if(layEvent === 'sure'){ //编辑
+
+						// alert(JSON.stringify(data))
+						let id = data.einId;
+						// alert(id)
+						// 面试再次筛选
+						xadmin.open('职位申请','EmploymentApproval-Update.html?id=' + id, 1580,750)
+
+					}
+				});
+
+			});
+
+
+		</script>
 	</body>
 </html>
