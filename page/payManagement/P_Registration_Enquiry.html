@@ -15,11 +15,39 @@
 		<link rel="stylesheet" href="../../css/xadmin.css">
 		<script src="../../lib/layui/layui.js" charset="utf-8"></script>
 		<script type="text/javascript" src="../../js/xadmin.js"></script>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<!-- 导航元素依赖 结束 -->
 		<script type="text/javascript">
 		    function fuhe(){
 				
-			}	
+			}
+			$(function () {
+//http://127.0.0.1:8080/ssm/salary-grant/P_Registration_Enquiry
+				$.post("http://127.0.0.1:8080/ssm/salary-grant/P_Registration_Enquiry",{},function (data) {
+					let sum=0;
+					let cxjbgz=0;
+					let tr="";
+					for(let i=0;i<data.length;i++){
+						if(data[i].firstKindId==1){
+							sum++;
+							cxjbgz+=data[i].salaryStandardSum;
+						}
+							tr+= "<tr>"+
+
+									"<td>"+data[i].salaryGrantId+"</td>"+
+									"<td>"+(data[i].firstKindName==null? '':data[i].firstKindName)+"</td>"+
+									"<td>"+(data[i].secondKindName==null? '':data[i].secondKindName)+"</td>"+
+									"<td>"+(data[i].thirdKindName==null? '':data[i].thirdKindName)+"</td>"+
+									"<td>"+data[i].humanAmount+"</td>"+
+									"<td>"+data[i].salaryStandardSum+"</td>"+
+								"</tr>";
+							//alert(data[i].salaryGrantId+"-")
+					}
+
+					alert(sum+'-'+cxjbgz)
+					$("#table").append(tr);
+				});
+			});
 		</script>
 	</head>
 	<body>
@@ -33,7 +61,7 @@
 		  <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
 		    <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
 		</div>
-		<table class="layui-table" lay-skin="line">
+		<table class="layui-table" lay-skin="line" id="table">
 		    <colgroup>
 				<col width="150">
 				<col width="200">
@@ -48,7 +76,7 @@
 					<th>基本薪酬总额(元)</th>
 				</tr> 
 		    </thead>
-		    <tbody>
+		   <!-- <tbody>
 				<tr>
 					<td>HS1234354</td>
 					<td>I级结构</td>
@@ -57,7 +85,7 @@
 					<td>5</td>
 					<td>139823</td>
 				</tr>
-		    </tbody>
+		    </tbody>-->
 			<tfoot>
 				<tr align="center">
 					<td colspan="7">

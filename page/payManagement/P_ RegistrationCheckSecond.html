@@ -159,9 +159,9 @@
 		$(function () {
 			$("#fuhe").click(function () {
 				let formData=$("#frm").serialize();
-				alert(formData)
 				$.post("http://127.0.0.1:8080/ssm/salary-grant/updates",formData,function (data) {
-
+					alert(data);
+					window.history.back(-1);
 				})
 
 			})
