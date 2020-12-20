@@ -28,10 +28,10 @@
 					let cxjbgz=0;
 					let tr="";
 					for(let i=0;i<data.length;i++){
-						if(data[i].firstKindId==1){
+						/*if(data[i].firstKindId==1){
 							sum++;
 							cxjbgz+=data[i].salaryStandardSum;
-						}
+						}*/
 							tr+= "<tr>"+
 
 									"<td>"+data[i].salaryGrantId+"</td>"+
@@ -44,7 +44,7 @@
 							//alert(data[i].salaryGrantId+"-")
 					}
 
-					alert(sum+'-'+cxjbgz)
+					//alert(sum+'-'+cxjbgz)
 					$("#table").append(tr);
 				});
 			});
