@@ -28,10 +28,10 @@
 					let cxjbgz=0;
 					let tr="";
 					for(let i=0;i<data.length;i++){
-						/*if(data[i].firstKindId==1){
+						if(data[i].firstKindId==1){
 							sum++;
 							cxjbgz+=data[i].salaryStandardSum;
-						}*/
+						}
 							tr+= "<tr>"+
 
 									"<td>"+data[i].salaryGrantId+"</td>"+
@@ -45,6 +45,10 @@
 					}
 
 					//alert(sum+'-'+cxjbgz)
+
+					$("#rs").val(sum);
+					$("#sum").val(cxjbgz);
+
 					$("#table").append(tr);
 				});
 			});
@@ -61,7 +65,10 @@
 		  <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
 		    <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
 		</div>
+		一级集团人数:<input type="text" id="rs">
+		基本薪酬总额:<input type="text" id="sum">
 		<table class="layui-table" lay-skin="line" id="table">
+
 		    <colgroup>
 				<col width="150">
 				<col width="200">
